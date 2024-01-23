@@ -1,0 +1,92 @@
+* {
+	font-family: DM Sans;
+}
+
+.google-card {
+	transform: translate(50%);
+	height: 42px;
+	width: 80%;
+	border-radius: 30px;
+	cursor: pointer;
+	border: 1px solid;
+}
+
+.google-card-body {
+	height: 100%;
+	display: flex;
+	align-items: center;
+	/* Center content vertically */
+}
+
+.google-text {
+	text-align: center;
+	margin-top: 8px;
+	margin-left: 33px;
+	font-weight: bold;
+	font-size: 18px;
+}
+
+.text-input {
+	stroke: 1px solid;
+	background-color: #D9D9D9;
+	border-radius: 10px;
+	height: 61px;
+	padding-left: 30px;
+	font-size: large;
+	width: 487px;
+	margin-bottom: 20px;
+	display: flex;
+	align-items: center;
+	box-sizing: border-box;
+
+}
+
+.password-container {
+	position: relative;
+	width: 487px;
+	align-items: center;
+	display: flex;
+}
+
+.show-password-btn {
+	position: absolute;
+	top: 50%;
+	right: 10px;
+	bottom: 2px;
+	transform: translateY(-50%);
+	padding: 0 10px;
+	border: none;
+	cursor: pointer;
+	margin-right: auto;
+}
+
+.submit-btn {
+	background-color: #FFC95B;
+	stroke: 1px solid black;
+	border-radius: 10px;
+	height: 53px;
+	width: 182px;
+	color: black;
+}
+
+.error-message {
+	color: red;
+	margin-top: 0px;
+	text-align: left;
+	/* Adjust as needed */
+}
+
+.input-error {
+	border: 2px solid red;
+}
+
+@font-face {
+	font-family: 'Product Sans';
+	font-style: normal;
+	font-weight: 400;
+	src: local('Open Sans'), local('OpenSans'), url(https://fonts.gstatic.com/s/productsans/v5/HYvgU2fE2nRJvZ5JFAumwegdm0LZdjqr5-oayXSOefg.woff2) format('woff2');
+}
+
+body {
+	background-color: #D1D1D1;
+}
