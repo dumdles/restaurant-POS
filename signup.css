@@ -1,113 +1,125 @@
-body {
-    font-family: 'DM Sans', sans-serif;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .container {
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 100%;
-  }
-  
-  .form-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 50%;
-    padding: 20px;
-    box-sizing: border-box;
-  }
-  
-  form {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 10px;
-    width: 100%;
-  }
-  
-  label, input, input[type="submit"] {
-    grid-column: span 2;
-    margin-bottom: 10px;
-  }
+* {
+	font-family: DM Sans;
+}
 
-  .text-input {
-    font-family: DM Sans, sans-serif;
-    stroke: 1px solid;
-    background-color: #D9D9D9;
-    border-radius: 10px;
-    width: max(50%, 400px);
-    height: max(61px);
-    padding-left: 30px;
-    font-size: large;
-    margin-bottom: 5px;
-    align-items: center;
-  }
-  
-  input[type="submit"] {
-    background-color: #ffc95b;
-    color: black;
-    width: 182px;
-    height: min(53px);
-    font-size: 20px;
-    padding: 10px 20px;
-    border: 1px solid;
-    border-radius: 10px;
-    cursor: pointer;
-    font-family: DM Sans, sans-serif;
-  }
-  
-  input[type="submit"]:hover {
-    background-color: white;
-    font-weight: bold;
-  }
-  
-  .image-carousel-container {
-    width: 50%;
-    height: 100%;
-    overflow: hidden;
-  }
-  
-  .image-carousel {
-    display: flex;
-    height: 100%;
-    width: 200%;
-    animation: slide 20s infinite linear;
-  }
-  
-  .image-carousel img {
-    width: 50%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
-  @keyframes slide {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
-  }
-  
-  @media (max-width: 768px) {
-    .container {
-      flex-direction: column;
-    }
-  
-    .form-container, .image-carousel-container {
-      width: 100%;
-    }
-  
-    form {
-      grid-template-columns: 1fr;
-    }
-  
-    .image-carousel {
-      width: 100%;
-    }
-  }
+.google-card {
+	height: 42px;
+	width: 53%;
+	border-radius: 30px;
+	cursor: pointer;
+	border: 1px solid;
+  background-color: #4285F4;
+  color: white;
+  /* margin-left: 23%; */
+}
+
+.google-card:hover {
+	height: 42px;
+	width: 53%;
+	border-radius: 30px;
+	cursor: pointer;
+	border: 2px solid black;
+  background-color: #4285F4;
+}
+
+.google-card-body {
+	height: 100%;
+	display: flex;
+	align-items: center;
+}
+
+.google-text {
+	text-align: center;
+	margin-top: 8px;
+	margin-left: 30px;
+	font-weight: bold;
+	font-size: 15px;
+  color: white;
+  font-family: Product Sans; 
+  font-weight: 100;
+}
+
+.text-input {
+	border: 2px solid;
+	background-color: #D9D9D9;
+	border-radius: 10px;
+	height: 61px;
+	padding-left: 30px;
+	font-size: large;
+	width: 487px;
+	margin-bottom: 20px;
+	display: flex;
+	align-items: center;
+	box-sizing: border-box;
+}
+
+.name-input {
+  border: 2px solid black;
+  background-color: #D9D9D9;
+  border-radius: 10px;
+  height: 61px;
+  padding-left: 30px;
+  font-size: large;
+  display: flex;
+}
+
+.password-container {
+	position: relative;
+	width: 487px;
+	align-items: center;
+	display: flex;
+}
+
+.show-password-btn {
+	position: absolute;
+	top: 50%;
+	right: 10px;
+	bottom: 2px;
+	transform: translateY(-80%);
+	padding: 0 10px;
+	border: none;
+	cursor: pointer;
+	margin-right: auto;
+  text-align: right;
+}
+
+.submit-btn {
+	background-color: #FFC95B;
+	border: 2px solid black;
+	border-radius: 10px;
+	height: 53px;
+	width: 182px;
+	color: black;
+}
+
+.submit-btn:hover {
+	background-color: #f9f9f9;
+	stroke: 1px solid black;
+	border-radius: 10px;
+	height: 53px;
+	width: 182px;
+	color: black;
+  font-weight: bolder;
+}
+
+.error-message {
+	color: red;
+	margin-top: 0px;
+	text-align: left;
+	/* Adjust as needed */
+}
+
+.input-error {
+	border: 2px solid red;
+}
+
+@font-face {
+	font-family: 'Product Sans';
+	font-style: normal;
+	font-weight: 400;
+	src: local('Open Sans'), local('OpenSans'), url(https://fonts.gstatic.com/s/productsans/v5/HYvgU2fE2nRJvZ5JFAumwegdm0LZdjqr5-oayXSOefg.woff2) format('woff2');
+}
+
+body {
+	background-color: #D1D1D1;
+}

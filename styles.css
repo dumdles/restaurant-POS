@@ -62,7 +62,7 @@
 
 .submit-btn {
 	background-color: #FFC95B;
-	stroke: 1px solid black;
+	border: 1px solid black;
 	border-radius: 10px;
 	height: 53px;
 	width: 182px;
