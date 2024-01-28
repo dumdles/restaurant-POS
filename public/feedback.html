@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/f99dffaa0d.js" crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+
+    <title>Feedback</title>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <script>
+      document.write('<div id="topnavbar-container"></div>');
+      fetch("topnavbar.html")
+        .then((response) => response.text())
+        .then((data) => (document.getElementById("topnavbar-container").innerHTML = data));
+    </script>
+
+    <div class="container-lg form">
+      <form id="feedbackForm">
+        <div class="row justify-content-center mt-5 pt-5" style="background-color: #d9d9d9">
+          <div class="col-md-6">
+            <h1>Feedback Form</h1>
+            <p>At Los Pollos Amigos, we always strive to serve you better!</p>
+            <p>If you have any feedback on your experience at our restaurants, feel free to fill up this feedback form and we will get back to you as soon as possible!</p>
+            <div class="form-group mb-3">
+              <label for="name">Name</label>
+              <input type="text" class="form-control" id="name" placeholder="Enter your name" />
+            </div>
+            <div class="form-group mb-3">
+              <label for="email">Email</label>
+              <input type="email" class="form-control" id="email" placeholder="Enter your email" />
+            </div>
+            <div class="form-group mb-3">
+              <label for="outlet">Outlet</label>
+              <select class="form-control" name="outlet" id="outlet" />
+              <option value="JEM">JEM</option>
+              <option value="Clementi">Clementi</option>
+              <option value="Changi">Changi</option>
+            </div>
+            <div class="form-group mb-4">
+              <label for="message">Feedback</label>
+              <textarea class="form-control" name="message" id="message" rows="3" placeholder="Enter your feedback"></textarea>
+            </div>
+            <div class="mb-5">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- Bottom nav bar with JavaScript -->
+    <script>
+      document.write('<div id="bottomnavbar-container"></div>');
+      fetch("bottomnavbar.html")
+        .then((response) => response.text())
+        .then((data) => (document.getElementById("bottomnavbar-container").innerHTML = data));
+    </script>
+  </body>
+</html>
+
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyBasI3Cfcv2NuSSdL9rUI__pYs-xUN7nm8",
+    authDomain: "csad-restaurant-pos.firebaseapp.com",
+    databaseURL: "https://csad-restaurant-pos-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "csad-restaurant-pos",
+    storageBucket: "csad-restaurant-pos.appspot.com",
+    messagingSenderId: "964704635393",
+    appId: "1:964704635393:web:7a616e7814cb9c42348e00",
+    measurementId: "G-SW0P8CW3WQ",
+  };
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { getFirestore } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+  import { collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js"; 
+
+
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+
+  document.getElementById("feedbackForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const outlet = document.getElementById("outlet").value;
+    const message = document.getElementById("message").value;
+
+    db.collection("feedback")
+      .add({
+        name,
+        email,
+        outlet,
+        message,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      })
+      .then(() => {
+        alert("Message sent successfully!");
+        document.getElementById("contact-form").reset();
+      })
+      .catch((error) => {
+        console.error("Error writing document: ", error);
+        alert("Error sending the message. Please try again later.");
+      });
+  });
+</script>
