@@ -11,6 +11,11 @@
   font-size: 25px;
 }
 
+.feedback {
+  border-radius: 30px;
+  width: auto;
+}
+
 .background-container {
   background-image: url("assets/background.jpg");
   background-size: cover;
