@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/f99dffaa0d.js" crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <script>
+      document.write('<div id="topnavbar-container"></div>');
+      fetch("topnavbar.html")
+        .then((response) => response.text())
+        .then((data) => (document.getElementById("topnavbar-container").innerHTML = data));
+    </script>
+
+    <div class="container-lg form">
+      <div class="container-fluid">
+        <h1>Edit Profile</h1>
+        <form>
+          <div class="mb-3">
+            <label for="fullName" class="form-label">Full Name</label>
+            <input type="text" class="form-control" id="fullName" />
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="email" />
+          </div>
+          <div class="mb-3">
+            <label for="phone" class="form-label">Phone number</label>
+            <input type="phone" class="form-control" id="phone" />
+          </div>
+          <div class="mb-3">
+            <label for="birthday" class="form-label">Birthday</label>
+            <input type="date" class="form-control" id="birthday" />
+          </div>
+          <div class="mb-3">
+            <label for="bio" class="form-label">Bio</label>
+            <textarea class="form-control" id="bio" rows="3"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+          <button type="submit" class="btn btn-outline-danger">Delete Account</button>
+        </form>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Bottom nav bar -->
+    <script>
+      document.write('<div id="bottomnavbar-container"></div>');
+      fetch("bottomnavbar.html")
+        .then((response) => response.text())
+        .then((data) => (document.getElementById("bottomnavbar-container").innerHTML = data));
+    </script>
+  </body>
+</html>
