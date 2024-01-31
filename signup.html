@@ -59,15 +59,17 @@
 
                 <div class="row g-3 password-container">
                   <input class="form-control text-input" type="password" name="password" id="inputPassword" placeholder="Password" />
-                  <i class="far fa-eye-slash show-password-btn" id="showPasswordBtn"></i>
-                  <div class="error-message" id="passwordErrorMessage"></div>
+                  <i class="far fa-eye-slash show-password-btn" id="showPasswordBtn"></i> 
                 </div>
+
+                <div class="error-message" id="passwordErrorMessage"></div>
 
                 <div class="row g-3 password-container">
                   <input class="form-control text-input" type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" />
                   <i class="far fa-eye-slash show-password-btn" id="showCfmPasswordBtn"></i>
-                  <div class="error-message" id="passwordConfirmErrorMessage"></div>
                 </div>
+                
+                <div class="error-message" id="passwordConfirmErrorMessage"></div>
 
                 <div class="row">
                   <button class="submit-btn" type="submit" style="position: sticky; transform: translate(86%)">Create Account</button>
@@ -125,23 +127,28 @@
   </body>
 
   <script>
-    document.getElementById("showPasswordBtn").addEventListener("click", togglePasswordVisibility);
-    document.getElementById("showCfmPasswordBtn").addEventListener("click", togglePasswordVisibility);
+    document.getElementById("showPasswordBtn").addEventListener("click", function() {
+    togglePasswordVisibility("inputPassword", "showPasswordBtn");
+});
 
-    function togglePasswordVisibility() {
-      var passwordInput = document.getElementById("inputPassword");
-      var showPasswordBtn = document.getElementById("showPasswordBtn");
+document.getElementById("showCfmPasswordBtn").addEventListener("click", function() {
+    togglePasswordVisibility("confirmPassword", "showCfmPasswordBtn");
+});
 
-      if (passwordInput.type === "password") {
+function togglePasswordVisibility(inputId, buttonId) {
+    var passwordInput = document.getElementById(inputId);
+    var showPasswordBtn = document.getElementById(buttonId);
+
+    if (passwordInput.type === "password") {
         passwordInput.type = "text";
         showPasswordBtn.classList.remove("far", "fa-eye-slash");
         showPasswordBtn.classList.add("far", "fa-eye");
-      } else {
+    } else {
         passwordInput.type = "password";
         showPasswordBtn.classList.remove("far", "fa-eye");
         showPasswordBtn.classList.add("far", "fa-eye-slash");
-      }
     }
+}
   </script>
 
   <script type="module">
