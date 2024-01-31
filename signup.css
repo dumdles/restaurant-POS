@@ -80,7 +80,8 @@
 	border: none;
 	cursor: pointer;
 	margin-right: auto;
-  text-align: right;
+    text-align: right;
+    width: 55px;
 }
 
 .submit-btn {
