@@ -37,8 +37,8 @@
                     <h1>Categories</h1>
                     <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i class="fa-solid fa-circle-dollar-to-slot fa-fw me-3"></i><span>Promotions</span></a>
                     <a href="#" class="list-group-item list-group-item-action py-2 ripple" aria-current="true"> <i class="fa-solid fa-pepper-hot fa-fw me-3"></i><span>Tacos</span> </a>
-                    <a href="#" class="list-group-item list-group-item-action py-2 ripple active"> <i class="fa-solid fa-children fa-fw me-3"></i><span>Sharing Platters</span> </a>
-                    <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i class="fa-solid fa-burger fa-fw me-3"></i><span>Burgers & Wraps</span></a>
+                    <a href="#" class="list-group-item list-group-item-action py-2 ripple"> <i class="fa-solid fa-children fa-fw me-3"></i><span>Sharing Platters</span> </a>
+                    <a href="#" class="list-group-item list-group-item-action py-2 ripple active"><i class="fa-solid fa-burger fa-fw me-3"></i><span>Burgers & Wraps</span></a>
                     <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i class="fa-solid fa-utensils fa-fw me-3"></i><span>Set Meals</span></a>
                     <a href="#" class="list-group-item list-group-item-action py-2 ripple"> <i class="fa-solid fa-cookie-bite fa-fw me-3"></i><span>Sides</span> </a>
                     <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i class="fa-solid fa-ice-cream fa-fw me-3"></i><span>Desserts</span></a>
@@ -156,4 +156,26 @@
 
         
     </body>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
+        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-analytics.js";
+
+        const firebaseConfig = {
+        apiKey: "AIzaSyBasI3Cfcv2NuSSdL9rUI__pYs-xUN7nm8",
+        authDomain: "csad-restaurant-pos.firebaseapp.com",
+        databaseURL: "https://csad-restaurant-pos-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "csad-restaurant-pos",
+        storageBucket: "csad-restaurant-pos.appspot.com",
+        messagingSenderId: "964704635393",
+        appId: "1:964704635393:web:7a616e7814cb9c42348e00",
+        measurementId: "G-SW0P8CW3WQ",
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+      const db = getFirestore(app);
+      
+    </script>
 </html>

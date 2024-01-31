@@ -187,10 +187,18 @@ body {
     width: 28rem;
 }
 
+.card .card-body {
+  height: 100%;
+  overflow: hidden;
+}
+
 .card .card-body .card-title {
     color: #f98f21;
     font-weight: bold;
     font-size: 1.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .card:hover,
