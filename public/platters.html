@@ -84,7 +84,7 @@
       let itemsData = [];
       // Fetch data from the "desserts" collection
       async function fetchItems() {
-        const itemsCollection = collection(db, "categories", "burgers", "items");
+        const itemsCollection = collection(db, "categories", "platters", "items");
         const itemsSnapshot = await getDocs(itemsCollection);
         return itemsSnapshot.docs.map((doc) => ({
           id: doc.id,

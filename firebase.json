@@ -5,6 +5,41 @@
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "/promotions", "destination": "/promotions.html"
+      },
+      {
+        "source": "/tacos", "destination": "/tacos.html"
+      },
+      {
+        "source": "/platters", "destination": "/platters.html"
+      },
+      {
+        "source": "/burgers", "destination": "/burgers.html"
+      },
+      {
+        "source": "/setmeals", "destination": "/setmeals.html"
+      },
+      {
+        "source": "/sides", "destination": "/sides.html"
+      },
+      {
+        "source": "/desserts", "destination": "/desserts.html"
+      },
+      {
+        "source": "/drinks", "destination": "/drinks.html"
+      },
+      {
+        "source": "/about", "destination": "/about.html"
+      },
+      {
+        "source": "/feedback", "destination": "/feedback.html"
+      },
+      {
+        "source": "**", "destination": "/index.html"
+      }
     ]
   }
 }

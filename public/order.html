@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            crossorigin="anonymous"
+        />
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"
+        ></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet" />
+        <script src="https://kit.fontawesome.com/f99dffaa0d.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="styles.css" />
+
+        <title>Order</title>
+    </head>
+    <body>
+        <!-- Navbar -->
+        <script>
+            document.write('<div id="topnavbar-container"></div>');
+            fetch("topnavbar.html")
+                .then((response) => response.text())
+                .then((data) => (document.getElementById("topnavbar-container").innerHTML = data));
+        </script>
+
+        <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+            <div class="position-sticky">
+                <div class="list-group list-group-flush mx-3 mt-4">
+                    <h1>Categories</h1>
+                    <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i class="fa-solid fa-circle-dollar-to-slot fa-fw me-3"></i><span>Promotions</span></a>
+                    <a href="#" class="list-group-item list-group-item-action py-2 ripple" aria-current="true"> <i class="fa-solid fa-pepper-hot fa-fw me-3"></i><span>Tacos</span> </a>
+                    <a href="#" class="list-group-item list-group-item-action py-2 ripple"> <i class="fa-solid fa-children fa-fw me-3"></i><span>Sharing Platters</span> </a>
+                    <a href="#" class="list-group-item list-group-item-action py-2 ripple active"><i class="fa-solid fa-burger fa-fw me-3"></i><span>Burgers & Wraps</span></a>
+                    <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i class="fa-solid fa-utensils fa-fw me-3"></i><span>Set Meals</span></a>
+                    <a href="#" class="list-group-item list-group-item-action py-2 ripple"> <i class="fa-solid fa-cookie-bite fa-fw me-3"></i><span>Sides</span> </a>
+                    <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i class="fa-solid fa-ice-cream fa-fw me-3"></i><span>Desserts</span></a>
+                    <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i class="fa-solid fa-martini-glass-citrus fa-fw me-3"></i><span>Drinks</span></a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container-fluid menu-items" style="padding-left: 17rem; padding-top: 8rem">
+            <div class="row">
+                <div class="col">
+                    <div class="card"">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="https://s3-media0.fl.yelpcdn.com/bphoto/AVGpK5YmlXA47RgFb26dlg/1000s.jpg" class="img-fluid rounded-start" alt="..." />
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">Menu Item</h5>
+                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    <h6 class="card-price">$10.00</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="https://s3-media0.fl.yelpcdn.com/bphoto/AVGpK5YmlXA47RgFb26dlg/1000s.jpg" class="img-fluid rounded-start" alt="..." />
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">Menu Item</h5>
+                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    <h6 class="card-price">$10.00</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="https://s3-media0.fl.yelpcdn.com/bphoto/AVGpK5YmlXA47RgFb26dlg/1000s.jpg" class="img-fluid rounded-start" alt="..." />
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">Menu Item</h5>
+                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    <h6 class="card-price">$10.00</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="https://s3-media0.fl.yelpcdn.com/bphoto/AVGpK5YmlXA47RgFb26dlg/1000s.jpg" class="img-fluid rounded-start" alt="..." />
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">Menu Item</h5>
+                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    <h6 class="card-price">$10.00</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="https://s3-media0.fl.yelpcdn.com/bphoto/AVGpK5YmlXA47RgFb26dlg/1000s.jpg" class="img-fluid rounded-start" alt="..." />
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">Menu Item</h5>
+                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    <h6 class="card-price">$10.00</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="https://s3-media0.fl.yelpcdn.com/bphoto/AVGpK5YmlXA47RgFb26dlg/1000s.jpg" class="img-fluid rounded-start" alt="..." />
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">Menu Item</h5>
+                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    <h6 class="card-price">$10.00</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        
+    </body>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
+        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-analytics.js";
+
+        const firebaseConfig = {
+        apiKey: "AIzaSyBasI3Cfcv2NuSSdL9rUI__pYs-xUN7nm8",
+        authDomain: "csad-restaurant-pos.firebaseapp.com",
+        databaseURL: "https://csad-restaurant-pos-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "csad-restaurant-pos",
+        storageBucket: "csad-restaurant-pos.appspot.com",
+        messagingSenderId: "964704635393",
+        appId: "1:964704635393:web:7a616e7814cb9c42348e00",
+        measurementId: "G-SW0P8CW3WQ",
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+      const db = getFirestore(app);
+      
+    </script>
+</html>
