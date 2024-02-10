@@ -32,11 +32,11 @@
         .then((data) => (document.getElementById("topnavbar-container").innerHTML = data));
     </script>
 
-    <div id="sidebar-container" class="d-flex">
+    <div id="sidebar-container">
     </div>
 
     <div class="container-fluid menu-items" style="padding-left: 17rem; padding-top: 8rem">
-      <div class="row" id="burgersMenu">
+      <div class="row" id="tacosMenu">
         <!-- Dynamic content will be added here -->
       </div>
     </div>
@@ -61,11 +61,11 @@
       const analytics = getAnalytics(app);
       const db = getFirestore(app);
 
-      // Fetch data from the "burgers" collection
-      async function fetchBurgers() {
-        const burgersCollection = collection(db, "categories", "burgers", "items");
-        const burgersSnapshot = await getDocs(burgersCollection);
-        return burgersSnapshot.docs.map((doc) => doc.data());
+      // Fetch data from the "tacos" collection
+      async function fetchTacos() {
+        const tacosCollection = collection(db, "categories", "tacos", "items");
+        const tacosSnapshot = await getDocs(tacosCollection);
+        return tacosSnapshot.docs.map((doc) => doc.data());
       }
 
       // Function to generate HTML for menu items
@@ -108,12 +108,12 @@
 
       // Populate the menu with data from the "burgers" collection
       async function populateMenu() {
-        const burgersMenu = document.getElementById("burgersMenu");
-        const burgersData = await fetchBurgers();
+        const tacosMenu = document.getElementById("tacosMenu");
+        const tacosData = await fetchTacos();
 
-        burgersData.forEach((item) => {
+        tacosData.forEach((item) => {
           const menuItemHTML = generateMenuItemHTML(item);
-          burgersMenu.innerHTML += menuItemHTML;
+          tacosMenu.innerHTML += menuItemHTML;
         });
       }
 
