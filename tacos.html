@@ -188,11 +188,6 @@
         });
       }
 
-      // Save item to Local Storage
-      function saveCartToLocalStorage() {
-        localStorage.setItem("cart", JSON.stringify(cart));
-      }
-
       // Call the populateMenu function when the page loads
       document.addEventListener("DOMContentLoaded", () => {
         populateMenu();
@@ -346,9 +341,22 @@
 
       document.getElementById("clearCartButton").addEventListener("click", function () {
         cart = [];
-        updateCartUI();
-        saveCartToLocalStorage();
+        console.log("cart cleared: ", cart);
+        clearCartAndSave();
       });
+
+      // Save item to Local Storage
+      function saveCartToLocalStorage() {
+        console.log("Saving cart to local storage:", cart); // Add this line for debugging
+        localStorage.setItem("cart", JSON.stringify(cart));
+      }
+
+      function clearCartAndSave() {
+        console.log("Clearing cart and saving to local storage...");
+        cart = []; // Clear the cart array
+        saveCartToLocalStorage(); // Save the updated cart to local storage
+        updateCartUI(); // Update the cart UI to reflect the cleared cart
+      }
     </script>
   </body>
 </html>
