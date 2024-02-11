@@ -18,9 +18,49 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/f99dffaa0d.js" crossorigin="anonymous"></script>
+
+    <!-- Firebase JS SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js" type="module"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js" type="module"></script>
     <link rel="stylesheet" href="styles.css" />
 
     <title>Profile</title>
+    <style>
+    body{
+      background-color: #D9D9D9;
+    }
+    .css-profilebar{
+      padding: 0px;
+
+    }
+    .card{
+      border-radius: 30px;
+    }
+    .card-body {
+      display: flex;
+      align-items: center;
+    }
+    .css-profileimg {
+      display: inline-block;
+      border-radius: 50%;
+      overflow: hidden; /* Ensure the image stays within the rounded border */
+
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
+    }
+    .card-body .css-name {
+      display: inline-block;
+      margin-left: 10%; /* Adjust this margin as needed */
+      text-align: left;
+    }
+    .content{
+      padding: 5%;
+    }
+    .content .col-6 .row h3{
+      margin-top: 5%;
+    }
+  </style>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg" style="background-color: #f98f21">
@@ -66,5 +106,161 @@
         </div>
       </div>
     </nav>
+    <div class ="container-fluid">
+      <div class="card" style="padding: 0; margin:10%;">
+        <div class="card-body" style="padding: 0; margin:0;">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="css-profilebar">
+                <div class="card" style="background-color: #F98F21;">
+                  <div class="card-body" >
+                    <div class="css-profileimg">
+                      <img src="https://images.unsplash.com/photo-1481349518771-20055b2a7b24?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cmFuZG9tfGVufDB8fDB8fHww" alt="Bootstrap" width="150px" height="150px">
+                    </div>
+                    <div class="css-name">
+                      <h1 id="profBigName"> Gustavo Fring</h1>
+                      <h4>Member since: xx/xx/xx</h4>
+                    </div>
+                    <a href="./edit_profile.html">
+                    <button type="button" class="btn btn-primary mx-1" href="./edit_profile.html">
+                      Edit Button
+                    </button>
+                    </a>
+                    <button type="button" class="btn btn-danger ms-auto" id="logout">
+                      Logout
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="content">
+          <div class ="row">
+            <div class="col-5">
+              <div class="row mb-3">
+                <h3>Name</h3>
+                <h5 id="profName">Gustavo Fring</h5>
+              </div>
+              <div class="row mb-3">
+                <h3>Birthday</h3>
+                <h5 id="profBday">Gustavo Fring</h5>
+              </div>
+              <div class="row mb-3">
+                <h3>Phone Number</h3>
+                <h5 id="profPhoneNo"> Gustavo Fring</h5>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="card" style="padding: 5%; background-color: #25BCC0; color: white">
+                <div class="row mb-3">
+                  <h3 style="text-align: left; margin-left: 10px" >Progress</h3>
+                  <h3 style="text-align: right; margin-right: 10px" id="ptsDisplay" > 0/1500</h3>
+                </div>
+                <div class="progress" style="height: 20px">
+                  <div class="progress-bar" id="ptsBar" style="width: 0%" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <h5 id="ptsAway"> * </h5>
+
+              </div>
+              <div class="css-profilebar">
+                <div class="card border-0">
+                  <div class="card-body">
+                    <div class="row mb-3">
+                      <h3>Email</h3>
+                      <h5 id="profEmail">Gustavo Fring</h5>
+                    </div>
+                    <button type="button" class="btn  ms-auto" style="background-color: #25BCC0; color:white">
+                      View Rewards
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
+  <script type="module">
+
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
+    import { getDatabase, ref, set, update, get, child, push } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+    import { GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-auth.js";
+
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyBasI3Cfcv2NuSSdL9rUI__pYs-xUN7nm8",
+      authDomain: "csad-restaurant-pos.firebaseapp.com",
+      databaseURL: "https://csad-restaurant-pos-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "csad-restaurant-pos",
+      storageBucket: "csad-restaurant-pos.appspot.com",
+      messagingSenderId: "964704635393",
+      appId: "1:964704635393:web:7a616e7814cb9c42348e00",
+      measurementId: "G-SW0P8CW3WQ",
+    };
+
+    let UserInfo = JSON.parse(sessionStorage.getItem("user-info"));
+
+    let displayBigName = document.getElementById("profBigName");
+    let displayName = document.getElementById("profName");
+    let displayBday = document.getElementById("profBday");
+    let displayNo = document.getElementById("profPhoneNo");
+    let displayEmail = document.getElementById("profEmail");
+    let displayPts = document.getElementById("ptsDisplay");
+    let displayPtsBar = document.getElementById("ptsBar");
+    let displayPtsAway = document.getElementById("ptsAway");
+
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const database = getDatabase(app);
+    const dbref = ref(database);
+    const auth = getAuth();
+    const user = auth.currentUser;
+
+    get(child(dbref, 'users/' + `${UserInfo.userid}`)).then((snapshot) => {
+      if (snapshot.exists) {
+        if (snapshot.val().fullName === "") {
+
+          displayName.innerText = snapshot.val().firstName + " " + snapshot.val().lastName;
+          displayBigName.innerText = snapshot.val().firstName + " " + snapshot.val().lastName;
+        }
+        else {
+          displayName.innerText = snapshot.val().fullName;
+          displayBigName.innerText = snapshot.val().fullName;
+        }
+        displayBday.innerText = snapshot.val().birthday;
+        displayNo.innerText = snapshot.val().phone;
+        displayEmail.innerText = snapshot.val().email;
+        displayPts.innerText = snapshot.val().points + "/1500";
+        if (snapshot.val().points < 150) {
+          displayPtsAway.innerText = (150 - snapshot.val().points) + " pts away from a free side!";
+        } else if (snapshot.val().points >= 150 && snapshot.val().points < 300) {
+          displayPtsAway.innerText = (300 - snapshot.val().points) + " pts away from a free drink!";
+        } else if (snapshot.val().points >= 300 && snapshot.val().points < 500) {
+          displayPtsAway.innerText = (500 - snapshot.val().points) + " pts away from a free main dish!";
+        } else if (snapshot.val().points >= 500 && snapshot.val().points < 750) {
+          displayPtsAway.innerText = (750 - snapshot.val().points) + " pts away from a free main dish and drink!";
+        } else if (snapshot.val().points >= 750 && snapshot.val().points < 1000) {
+          displayPtsAway.innerText = (1000 - snapshot.val().points) + " pts away from a main dish, drink, and dessert!";
+        } else {
+          displayPtsAway.innerText = "Wow, so many points! Redeem them now!"
+        }
+        displayPtsBar.setAttribute("style", "width: " + snapshot.val().points/15 + '%');
+
+      }
+    });
+
+
+  </script>
 </html>
