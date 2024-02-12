@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            crossorigin="anonymous"
+        />
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"
+        ></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet" />
+        <script src="https://kit.fontawesome.com/f99dffaa0d.js" crossorigin="anonymous"></script>
+        <script src="https://www.gstatic.com/firebasejs/10.7.2/firebase-app-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/10.7.2/firebase-storage-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/10.7.2/firebase-auth-compat.js"></script>
+
+        <link rel="stylesheet" href="styles.css" />
+
+        <title>Item List</title>
+    </head>
+    <body>
+        <!-- Navbar -->
+        <!-- <script>
+            document.write('<div id="topnavbar-container"></div>');
+            fetch("../topnavbar.html")
+                .then((response) => response.text())
+                .then((data) => (document.getElementById("topnavbar-container").innerHTML = data));
+        </script> -->
+
+        <!-- Table to display menu items -->
+        <div class="container mt-5">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col" class="col-1">ID</th>
+                        <th scope="col" class="col-1">Item Name</th>
+                        <th scope="col" class="col-3">Description</th>
+                        <th scope="col" class="col-1">Price</th>
+                        <th scope="col" class="col-1">Category</th>
+                        <th scope="col" class="col-3">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="menuItemsBody"></tbody>
+            </table>
+        </div>
+    </body>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
+        import { collection, getDocs, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBasI3Cfcv2NuSSdL9rUI__pYs-xUN7nm8",
+            authDomain: "csad-restaurant-pos.firebaseapp.com",
+            databaseURL: "https://csad-restaurant-pos-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "csad-restaurant-pos",
+            storageBucket: "csad-restaurant-pos.appspot.com",
+            messagingSenderId: "964704635393",
+            appId: "1:964704635393:web:7a616e7814cb9c42348e00",
+            measurementId: "G-SW0P8CW3WQ",
+        };
+
+        // Initialise Firebase
+        const firebaseApp = firebase.initializeApp(firebaseConfig);
+        const db = firebaseApp.firestore();
+
+        // Function to fetch menu items from Firestore
+        function fetchMenuItems() {
+            db.collection("categories")
+                .get()
+                .then((querySnapshot) => {
+                    querySnapshot.forEach((categoryDoc) => {
+                        const category = categoryDoc.id;
+                        categoryDoc.ref
+                            .collection("items")
+                            .get()
+                            .then((querySnapshot) => {
+                                querySnapshot.forEach((itemDoc) => {
+                                    const item = itemDoc.data();
+                                    addItemToTable(item, category, itemDoc.id);
+                                });
+                            });
+                    });
+                });
+        }
+
+        // Function to add a menu item to the table
+        function addItemToTable(item, category, id) {
+            const tableBody = document.getElementById("menuItemsBody");
+            const row = tableBody.insertRow();
+            row.innerHTML = `
+                                    <td>${id}</td>
+                                    <td>${item.name}</td>
+                                    <td>${item.description}</td>
+                                    <td>$${item.price.toFixed(2)}</td>
+                                    <td>${category}</td>
+                                    <td><button class="btn btn-outline-secondary edit-btn" data-id="${id}">Edit</button> <button class="btn btn-outline-danger delete-btn" data-id="${id}" data-category="${category}">Delete</button></td>
+                                `;
+        }
+
+        // Function to edit a menu item
+        function editMenuItem(id) {
+            console.log(`Edit menu item with ID ${id}`);
+        }
+
+        // Call fetchMenuItems when the page loads
+        document.addEventListener("DOMContentLoaded", fetchMenuItems);
+    </script>
+</html>
