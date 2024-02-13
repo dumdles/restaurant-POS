@@ -270,38 +270,6 @@ body {
     display: block;
   }
 
-  .order-confirm-items {
-    display: block;
-    align-items: center;
-    min-width: 30%;
-    height: 80px;
-    padding: 5px 20px;
-    border-radius: 10px;
-    background-color: #f5f5f5;
-    margin-bottom: 10px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  }
-
-  .order-confirm-quantity {
-    display: flex;
-    align-items: left;
-    margin-right: 10px;
-    font-size: 22px;
-  }
-
-  .order-confirm-item-name {
-    font-size: 1.2rem;
-    margin-left: 10px;
-    line-height: 1;
-    max-width: 270px;
-    flex: 1;
-  }
-
-  .order-confirm-item-price {
-    margin-inline: 10px;
-    font-weight: bold;
-    font-size: 18px;
-  }
 
   .total-container {
     margin-top: 10px;
@@ -332,8 +300,9 @@ body {
 }
 
 .order-summary {
-    margin-top: 6%;
     padding: 3%;
+    margin-top: 4%;
+    margin-bottom: 4%;
     align-items: center;
     width: 90vh;
     background: #fff;
@@ -348,6 +317,11 @@ body {
 .order-summary .item-name {
     font-weight: bold;
     font-size: large;
+}
+
+.item-quantity .item-price {
+    align-content: center;
+    justify-content: center;
 }
 
 .order-summary img {

@@ -157,8 +157,9 @@
                     console.log(details);
                     orderID = details.id;
                     alert('Transaction completed by user');
-                    
-                    window.location.href = "ordersummary.html";
+                    localStorage.setItem("orderID", orderID);
+                    localStorage.setItem("orderTime", details.create_time);;
+                    window.location.href = "order_summary.html";
                 });
             },
             onCancel: function(data) {
