@@ -23,9 +23,10 @@
         <title>Profile</title>
     </head>
     <body>
-        <!-- Navbar --><nav class="navbar navbar-expand-lg" style="background-color: #f98f21">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg" style="background-color: #f98f21">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#"> <img src="assets/logo.png" alt="logo" width="70" height="70" class="d-inline-block align-text-middle" />Los Pollos Amigos</a>
+                <a class="navbar-brand" href="index.html"> <img src="assets/logo.png" alt="logo" width="70" height="70" class="d-inline-block align-text-middle" />Los Pollos Amigos</a>
                 <button
                         class="navbar-toggler"
                         type="button"
@@ -40,10 +41,10 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Menu</a>
+                            <a class="nav-link" href="burgers.html">Menu</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Dropdown </a>
@@ -61,7 +62,7 @@
                     <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-success" type="submit">Search</button> -->
                     <li class="nav-item d-flex">
-                        <a class="nav-link" id="signUpOrProfile" href="profile.html">Profile</a>
+                        <a class="nav-link" id="signUpOrProfile" href="profile.html" >Profile</a>
                     </li>
                 </div>
             </div>
@@ -88,20 +89,21 @@
                 .then((response) => response.text())
                 .then((data) => (document.getElementById("bottomnavbar-container").innerHTML = data));
 
-            let signOrProf = document.getElementById("signUpOrProfile");
-            let UserInfo = sessionStorage.getItem("user-info");
-            let InfoArray = JSON.stringify(UserInfo) || {};
+                let signOrProf = document.getElementById("signUpOrProfile");
+                let UserInfo = sessionStorage.getItem("user-info");
+                let InfoArray = JSON.stringify(UserInfo) || {};
 
-            console.log(InfoArray)
+                console.log(InfoArray)
 
 
-            if (InfoArray.includes("userid")) {
-                signOrProf.setAttribute("href", 'profile.html');
-                signOrProf.innerText = "Profile";
-            } else {
-                signOrProf.setAttribute("href", 'signup.html');
-                signOrProf.innerText = "Sign Up";
-            }
+                if (InfoArray.includes("userid")) {
+                    signOrProf.setAttribute("href", 'profile.html');
+                    signOrProf.innerText = "Profile";
+                } else {
+                    signOrProf.setAttribute("href", 'signup.html');
+                    signOrProf.innerText = "Sign Up";
+                }
+
         </script>
     </body>
 </html>

@@ -206,6 +206,13 @@ function togglePasswordVisibility(inputId, buttonId) {
           const user = userCredential.user;
           console.log("User created: ", user);
 
+
+          const dt = new Date();
+          let day = dt.getDate();
+          let month = dt.getMonth() + 1;
+          let year = dt.getFullYear();
+          let currentDate = `${day}/${month}/${year}`;
+
           // Save additional user data
           set(ref(database, "users/" + user.uid), {
             firstName: firstName,
@@ -213,13 +220,15 @@ function togglePasswordVisibility(inputId, buttonId) {
             fullName: "",
             email: email,
             birthday: birthday,
-            phone: "",
+            phone: "-",
             bio: "",
+            region: 0,
             points: 0,
+            admin: false,
+            first_login: currentDate,
           });
 
-          alert("User created!");
-          window.location.href = 'login.html';
+          alert("User created! Please proceed to login page.");
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -228,6 +237,7 @@ function togglePasswordVisibility(inputId, buttonId) {
           alert(errorMessage);
           // ..
         });
+
     });
 
     document.getElementById("signup_google").addEventListener("click", (e) => {
@@ -249,19 +259,28 @@ function togglePasswordVisibility(inputId, buttonId) {
           const { displayName, email, uid } = user;
           const [firstName, lastName] = displayName.split('');
 
+
+          const dt = new Date();
+          let day = dt.getDate();
+          let month = dt.getMonth() + 1;
+          let year = dt.getFullYear();
+          let currentDate = `${day}/${month}/${year}`;
+
           // Save additional user data
           set(ref(database, "users/" + user.uid), {
             firstName: firstName,
             lastName: lastName,
             email: email,
             fullName: "",
-            birthday: birthday,
-            phone: "",
+            birthday: "",
+            phone: "-",
             bio: "",
+            region: 0,
             points: 0,
+            admin: false,
+            first_login: currentDate,
           });
-          alert("User has been signed up via Google!");
-          window.location.href = 'login.html';
+          alert("User has been signed up via Google! Please proceed to login page.");
           // ...
         })
         .catch((error) => {

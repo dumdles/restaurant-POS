@@ -5,17 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fbd5bca9-d86e-47ab-9e0d-868161145a34" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/tick_icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order_summary.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/payment.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/redeemDesserts.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/redeemDrinks.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/redeemSides.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/redeemTacos.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/redeemWrapBurgers.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/reward_summary.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rewards.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rewardsPayment.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rewardsSidebar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/burgers.html" beforeDir="false" afterPath="$PROJECT_DIR$/burgers.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/edit_profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/edit_profile.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/profile.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/signup.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/topnavbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/topnavbar.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -29,8 +37,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="JavaScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -45,12 +53,16 @@
   &quot;associatedIndex&quot;: 2
 }</component>
   <component name="ProjectId" id="2bLL9sCw7RSUXBH2uVMjCGCAdad" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
     "DefaultHtmlFileTemplate": "HTML File",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -90,10 +102,15 @@
       <workItem from="1707381856169" duration="1524000" />
       <workItem from="1707565002548" duration="12629000" />
       <workItem from="1707639453669" duration="11413000" />
+      <workItem from="1707727198402" duration="11239000" />
+      <workItem from="1707808760051" duration="35468000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>

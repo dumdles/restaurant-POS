@@ -22,50 +22,80 @@
     <!-- Firebase JS SDK -->
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js" type="module"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js" type="module"></script>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="signup.css" />
 
     <title>Profile</title>
     <style>
-    body{
-      background-color: #D9D9D9;
-    }
-    .css-profilebar{
-      padding: 0px;
+      body{
+        background-color: #D9D9D9;
+      }
+      .css-profilebar{
+        padding: 0px;
 
-    }
-    .card{
-      border-radius: 30px;
-    }
-    .card-body {
-      display: flex;
-      align-items: center;
-    }
-    .css-profileimg {
-      display: inline-block;
-      border-radius: 50%;
-      overflow: hidden; /* Ensure the image stays within the rounded border */
+      }
+      .card{
+        border-radius: 30px;
+      }
+      .content .col-6 {
+        text-align: center;
+      }
+      .card-body {
+        align-items: center;
+      }
+      .css-profileimg {
+        border-radius: 50%;
+        overflow: hidden; /* Ensure the image stays within the rounded border */
 
-      background-repeat: no-repeat;
-      background-position: center center;
-      background-size: cover;
-    }
-    .card-body .css-name {
-      display: inline-block;
-      margin-left: 10%; /* Adjust this margin as needed */
-      text-align: left;
-    }
-    .content{
-      padding: 5%;
-    }
-    .content .col-6 .row h3{
-      margin-top: 5%;
-    }
-  </style>
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+      }
+      .card-body .css-name {
+        margin-left: 10%;
+        text-align: left;
+      }
+
+      @media only screen and (min-width: 850px) {
+        .card-body {
+          display: flex;
+          align-items: center;
+        }
+      }
+      @media only screen and (max-width: 850px) {
+        .css-profilebar .card{
+          display: flex; /* Use flexbox layout */
+          justify-content: center; /* Center horizontally */
+          align-items: center; /* Center vertically */
+          flex-direction: column; /* Stack items vertically */
+          width: 100%; /* Take the full width to center content inside the parent */
+          text-align: center; /* Center text for inline or inline-block elements */
+          margin: auto;
+        }
+        .css-profileimg{
+          margin: auto;
+        }
+
+      }
+      .content{
+        padding: 5%;
+      }
+      .content .col-6 .row h3{
+        margin-top: 5%;
+      }
+      .cont{
+        width: fit-content;
+      }
+      .css-progress{
+        text-align: left;
+      }
+
+    </style>
+
   </head>
   <body>
     <nav class="navbar navbar-expand-lg" style="background-color: #f98f21">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#"> <img src="assets/logo.png" alt="logo" width="70" height="70" class="d-inline-block align-text-middle" />Los Pollos Amigos</a>
+        <a class="navbar-brand" href="index.html"> <img src="assets/logo.png" alt="logo" width="70" height="70" class="d-inline-block align-text-middle" />Los Pollos Amigos</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -80,10 +110,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
+              <a class="nav-link active" aria-current="page" href="index.html">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Menu</a>
+              <a class="nav-link" href="burgers.html">Menu</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Dropdown </a>
@@ -101,32 +131,28 @@
           <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
               <button class="btn btn-outline-success" type="submit">Search</button> -->
           <li class="nav-item d-flex">
-            <a class="nav-link" href="profile.html">Profile</a>
+            <a class="nav-link" href="profile.html" onload="checkLogin()" id="signUpOrProfile">Profile</a>
           </li>
         </div>
       </div>
     </nav>
     <div class ="container-fluid">
-      <div class="card" style="padding: 0; margin:10%;">
+      <div class="card" style="padding: 0; margin:5%;">
         <div class="card-body" style="padding: 0; margin:0;">
           <div class="container-fluid">
             <div class="row">
               <div class="css-profilebar">
                 <div class="card" style="background-color: #F98F21;">
-                  <div class="card-body" >
-                    <div class="css-profileimg">
-                      <img src="https://images.unsplash.com/photo-1481349518771-20055b2a7b24?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cmFuZG9tfGVufDB8fDB8fHww" alt="Bootstrap" width="150px" height="150px">
+                  <div class="card-body" style="height: 150px">
+                    <div class="css-name col-xl-4 col-lg-12 col-sm-12">
+                      <h1 id="profBigName">Your Name</h1>
+                      <h4 id="memberSince">Member since: xx/xx/xx</h4>
                     </div>
-                    <div class="css-name">
-                      <h1 id="profBigName"> Gustavo Fring</h1>
-                      <h4>Member since: xx/xx/xx</h4>
-                    </div>
-                    <a href="./edit_profile.html">
-                    <button type="button" class="btn btn-primary mx-1" href="./edit_profile.html">
-                      Edit Button
-                    </button>
-                    </a>
-                    <button type="button" class="btn btn-danger ms-auto" id="logout">
+                    <a href="edit_profile.html"> <button type="button" class="btn btn-primary mx-1 cont col-xl-3 col-lg-12 col-sm-12">
+                      Edit Profile
+                    </button></a>
+
+                    <button type="button" class="btn btn-danger ms-auto cont col-xl-3 col-lg-12 col-sm-12" id="logout">
                       Logout
                     </button>
                   </div>
@@ -140,27 +166,26 @@
             <div class="col-5">
               <div class="row mb-3">
                 <h3>Name</h3>
-                <h5 id="profName">Gustavo Fring</h5>
+                <h5 id="profName">Your Name</h5>
               </div>
               <div class="row mb-3">
                 <h3>Birthday</h3>
-                <h5 id="profBday">Gustavo Fring</h5>
+                <h5 id="profBday">xxxx-xx-xx</h5>
               </div>
               <div class="row mb-3">
                 <h3>Phone Number</h3>
-                <h5 id="profPhoneNo"> Gustavo Fring</h5>
+                <h5 id="profPhoneNo"> xxxxxxxx</h5>
               </div>
             </div>
-            <div class="col-6">
+            <div class="col-6 css-progress justify-content-left">
               <div class="card" style="padding: 5%; background-color: #25BCC0; color: white">
-                <div class="row mb-3">
-                  <h3 style="text-align: left; margin-left: 10px" >Progress</h3>
-                  <h3 style="text-align: right; margin-right: 10px" id="ptsDisplay" > 0/1500</h3>
+                <div class="col-12 css-progress">
+                  <h3 id="ptsDisplay">Progress: 0/1500</h3>
                 </div>
                 <div class="progress" style="height: 20px">
-                  <div class="progress-bar" id="ptsBar" style="width: 0%" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                  <div class="progress-bar" role="progressbar" id="ptsBar" style="width: 0%"  aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
-                <h5 id="ptsAway"> * </h5>
+                <h5 class="css-progress" id="ptsAway">0 points away from a free item!</h5>
 
               </div>
               <div class="css-profilebar">
@@ -168,11 +193,12 @@
                   <div class="card-body">
                     <div class="row mb-3">
                       <h3>Email</h3>
-                      <h5 id="profEmail">Gustavo Fring</h5>
+                      <h5 id="profEmail">your@email.here</h5>
                     </div>
-                    <button type="button" class="btn  ms-auto" style="background-color: #25BCC0; color:white">
+                    <a href="rewards.html">
+                    <button type="button" class="btn ms-auto" style="background-color: #25BCC0; color:white;">
                       View Rewards
-                    </button>
+                    </button></a>
                   </div>
                 </div>
               </div>
@@ -189,8 +215,7 @@
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
     import { getDatabase, ref, set, update, get, child, push } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
-    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-    import { GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-auth.js";
+    import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
     // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
@@ -218,6 +243,7 @@
     let displayPts = document.getElementById("ptsDisplay");
     let displayPtsBar = document.getElementById("ptsBar");
     let displayPtsAway = document.getElementById("ptsAway");
+    let displayMemberDate = document.getElementById("memberSince")
 
 
     // Initialize Firebase
@@ -230,6 +256,7 @@
 
     get(child(dbref, 'users/' + `${UserInfo.userid}`)).then((snapshot) => {
       if (snapshot.exists) {
+        displayMemberDate.innerText = "Member since: " + snapshot.val().first_login;
         if (snapshot.val().fullName === "") {
 
           displayName.innerText = snapshot.val().firstName + " " + snapshot.val().lastName;
@@ -242,7 +269,7 @@
         displayBday.innerText = snapshot.val().birthday;
         displayNo.innerText = snapshot.val().phone;
         displayEmail.innerText = snapshot.val().email;
-        displayPts.innerText = snapshot.val().points + "/1500";
+        displayPts.innerText = "Progress: " + snapshot.val().points + "/1500";
         if (snapshot.val().points < 150) {
           displayPtsAway.innerText = (150 - snapshot.val().points) + " pts away from a free side!";
         } else if (snapshot.val().points >= 150 && snapshot.val().points < 300) {
@@ -253,13 +280,45 @@
           displayPtsAway.innerText = (750 - snapshot.val().points) + " pts away from a free main dish and drink!";
         } else if (snapshot.val().points >= 750 && snapshot.val().points < 1000) {
           displayPtsAway.innerText = (1000 - snapshot.val().points) + " pts away from a main dish, drink, and dessert!";
+        } else if (snapshot.val().points > 1000) {
+          displayPtsAway.innerText = "Wow, so many points! Redeem them now!";
         } else {
-          displayPtsAway.innerText = "Wow, so many points! Redeem them now!"
+          displayPtsAway.innerText = "Error";
         }
         displayPtsBar.setAttribute("style", "width: " + snapshot.val().points/15 + '%');
 
       }
     });
+
+    document.getElementById("logout").addEventListener('click',
+            function userLogout() {
+              if (confirm("Are you sure you want to logout?") == true) {
+                signOut(auth).then(() => {
+                  sessionStorage.setItem("user-info", JSON.stringify({
+                  }));
+                  window.location.href = "index.html";
+                }).catch((error) => {
+                  console.log(error)
+                });
+              }
+            })
+
+    function checkLogin() {
+      let signOrProf = document.getElementById("signUpOrProfile");
+      let UserInfo = sessionStorage.getItem("user-info");
+      let InfoArray = JSON.stringify(UserInfo) || {};
+
+      console.log(InfoArray)
+
+
+      if (InfoArray.includes("userid")) {
+        signOrProf.setAttribute("href", 'profile.html');
+        signOrProf.innerText = "Profile";
+      } else {
+        signOrProf.setAttribute("href", 'signup.html');
+        signOrProf.innerText = "Sign Up";
+      }
+    }
 
 
   </script>

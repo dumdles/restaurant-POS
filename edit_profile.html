@@ -21,13 +21,49 @@
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js" type="module"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js" type="module"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.2/firebase-database.js" type="module"></script>
-    <link rel="stylesheet" href="styles.css" />
+    <style>
+      body {
+        background-color: #D9D9D9;
+      }
+
+      .css-profilebar {
+        padding: 0px;
+
+      }
+
+      .card {
+        border-radius: 30px;
+      }
+
+      .card-body {
+        display: flex;
+        align-items: center;
+      }
+
+
+      .card-body .css-name {
+        display: inline-block;
+        margin-left: 5%; /* Adjust this margin as needed */
+        text-align: left;
+      }
+
+      .content {
+        padding: 5%;
+      }
+
+      .content .col-6 .row h3 {
+        margin-top: 5%;
+      }
+
+
+    </style>
+
   </head>
   <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg" style="background-color: #f98f21">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#"> <img src="assets/logo.png" alt="logo" width="70" height="70" class="d-inline-block align-text-middle" />Los Pollos Amigos</a>
+        <a class="navbar-brand" href="index.html"> <img src="assets/logo.png" alt="logo" width="70" height="70" class="d-inline-block align-text-middle" />Los Pollos Amigos</a>
         <button
                 class="navbar-toggler"
                 type="button"
@@ -42,10 +78,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
+              <a class="nav-link active" aria-current="page" href="index.html">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Menu</a>
+              <a class="nav-link" href="burgers.html">Menu</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Dropdown </a>
@@ -69,35 +105,86 @@
       </div>
     </nav>
 
-    <div class="container-lg form" style="margin-top: 20px">
-      <div class="container-fluid">
-        <h1>Edit Profile</h1>
-        <form id="editProfileForm">
-          <div class="mb-3">
-            <label for="fullName" class="form-label">Full Name</label>
-            <input type="text" class="form-control" id="fullName" value=""/>
+    <div class="container-fluid">
+      <div class="card" style="padding: 0; margin:10%;">
+        <div class="card-body" style="padding: 0; margin:0;">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="css-profilebar">
+                <div class="card" style="background-color: #234C91; height: 150px; color: white">
+                  <div class="card-body">
+                    <div class="css-name">
+                      <h1> Edit Profile</h1>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="mb-3">
-            <label for="email" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="email" />
+        </div>
+        <div class="content">
+          <div class="row">
+            <div class="col-12">
+              <div class="card border-0">
+                <div class="card-body">
+                  <div class="row col-md-4 col-lg-3 col-sm-5">
+                    <h3>FULL NAME</h3>
+                  </div>
+                  <input type="text" class="form-control" id="fullName" placeholder="Enter name">
+                </div>
+                <div class="card-body">
+                  <div class="row col-md-4 col-lg-3 col-sm-5">
+                    <h3>EMAIL</h3>
+                  </div>
+                  <input type="email" class="form-control" id="email" placeholder="Enter email">
+                </div>
+                <div class="card-body">
+                  <div class="row col-md-4 col-lg-3 col-sm-5">
+                    <h3>BIRTHDAY</h3>
+                  </div>
+                  <input type="date" class="form-control" id="birthday">
+                </div>
+                <div class="card-body">
+                  <div class="row col-md-4 col-lg-3 col-sm-5">
+                    <h3>PHONE</h3>
+                  </div>
+                  <input type="number" class="form-control" id="phone" placeholder="Enter phone number">
+                </div>
+                <div class="card-body">
+                  <div class="row col-md-4 col-lg-3 col-sm-5">
+                    <h3>BIO</h3>
+                  </div>
+                  <textarea class="form-control" id="bio" placeholder="Enter bio" ></textarea>
+                </div>
+                <div class="card-body">
+                  <div class="row col-md-4 col-lg-3 col-sm-5">
+                    <h3>REGION</h3>
+                  </div>
+                  <select class="form-control" id="region">
+                    <option value="0">Select Region</option>
+                    <option value="1">Central</option>
+                    <option value="2">East</option>
+                    <option value="3">North</option>
+                    <option value="4">North-East</option>
+                    <option value="5">West</option>
+                  </select>
+                </div>
+              </div>
+
+
+
+            </div>
+            <div class="card-body col-8">
+              <button type="button" class="btn btn-primary" id="save">Save Changes</button>
+              <button type="button" class="btn btn-outline-danger ms-auto" id="delete">
+                Delete Account
+              </button>
+            </div>
           </div>
-          <div class="mb-3">
-            <label for="phone" class="form-label">Phone number</label>
-            <input type="number" class="form-control" id="phone" />
-          </div>
-          <div class="mb-3">
-            <label for="birthday" class="form-label">Birthday</label>
-            <input type="date" class="form-control" id="birthday" />
-          </div>
-          <div class="mb-3">
-            <label for="bio" class="form-label">Bio</label>
-            <textarea class="form-control" id="bio" rows="3"></textarea>
-          </div>
-          <button type="button" class="btn btn-primary" id="save">Save Changes</button>
-          <button type="button" class="btn btn-outline-danger" id="delete">Delete Account</button>
-        </form>
+        </div>
       </div>
     </div>
+
     <script>
       let UserCreds = JSON.parse(sessionStorage.getItem("user-creds"));
       let UserInfo = JSON.parse(sessionStorage.getItem("user-info"));
@@ -107,6 +194,7 @@
       let phoneNo = document.getElementById("phone");
       let birthday = document.getElementById("birthday");
       let bio = document.getElementById("bio");
+      let region = document.getElementById("region");
     </script>
     <script type="module">
 
@@ -114,8 +202,7 @@
       import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
       import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
       import { getDatabase, ref, set, update, get, child, push } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
-      import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-      import { GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-auth.js";
+      import { getAuth, deleteUser, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
       // TODO: Add SDKs for Firebase products that you want to use
       // https://firebase.google.com/docs/web/setup#available-libraries
@@ -141,6 +228,7 @@
       const auth = getAuth();
       const user = auth.currentUser;
 
+
       get(child(dbref, 'users/' + `${UserInfo.userid}`)).then((snapshot) => {
         if (snapshot.exists) {
           if (snapshot.val().fullName === "") {
@@ -153,6 +241,8 @@
           phoneNo.setAttribute("value", snapshot.val().phone)
           birthday.setAttribute("value", snapshot.val().birthday)
           bio.innerText = snapshot.val().bio
+          region.value = snapshot.val().region;
+
         }
       })
 
@@ -171,33 +261,58 @@
         var bdayVal = birthday.value;
         var phoneVal = phoneNo.value;
         var bioVal = bio.value;
+        var regionVal = region.value;
 
-
-
-        update(ref(database, 'users/' + `${UserInfo.userid}`), {
-          firstName: "",
-          lastName: "",
-          fullName: fnameVal,
-          email: emailVal,
-          birthday: bdayVal,
-          phone: phoneVal,
-          bio: bioVal,
-        }).then(()=>{
-          alert("Success");
-          window.location.href = "profile.html";
-        }).catch((error)=>{
-          alert("Unsuccessful");
-          console.log(error);
-        });
+        if (fnameVal === "") {
+          alert("Please enter your name")
+        } else if (emailVal === "") {
+          alert("Please enter your email")
+        } else if (bdayVal === "") {
+          alert("Please enter your birthday")
+        } else {
+          update(ref(database, 'users/' + `${UserInfo.userid}`), {
+            firstName: "",
+            lastName: "",
+            fullName: fnameVal,
+            email: emailVal,
+            birthday: bdayVal,
+            phone: phoneVal,
+            bio: bioVal,
+            region: regionVal,
+          }).then(() => {
+            alert("Success");
+            window.location.href = "profile.html";
+          }).catch((error) => {
+            alert("Unsuccessful");
+            console.log(error);
+          });
+        }
       }
 
 
-
-      document.getElementById("editProfileForm").addEventListener("submit", (e) => {
-        e.preventDefault(); // Prevent default form submission, as you want to handle Firebase submissi
-      });
+      function confirmUserDelete() {
+        const auth = getAuth();
+        const user = auth.currentUser;
+        let typeDelete = prompt("Are you sure you want to delete?\nType 'DELETE' to confirm.")
+        if (typeDelete === "DELETE") {
+          deleteUser(user).then(() => {
+            set(ref(database, 'users/' + `${UserInfo.userid}`), null)
+            sessionStorage.setItem("user-info", JSON.stringify({}));
+            alert("User has been deleted.");
+            signOut(auth).then(() => {
+              window.location.href = "index.html";
+            }).catch((error) => {
+              console.log(error)
+            });
+          }).catch((error) => {
+            console.log(error)
+          })
+        }
+      }
 
       document.getElementById("save").addEventListener('click', updateUserData)
+
+      document.getElementById("delete").addEventListener('click', confirmUserDelete)
 
     </script>
 

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            crossorigin="anonymous"
+    />
+    <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"
+    ></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/f99dffaa0d.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="styles.css" />
+
+    <title>checkout</title>
+</head>
+<body>
+<!-- Navbar -->
+<script>
+    document.write('<div id="topnavbar-container"></div>');
+    fetch("topnavbar.html")
+        .then((response) => response.text())
+        .then((data) => (document.getElementById("topnavbar-container").innerHTML = data));
+</script>
+    <h1 style="margin-top: 120px; text-align: center">Checkout</h1>
+    <h2 style="text-align: center" id="totalPrice">total: </h2>
+    <div style="width:0px ;margin: auto">
+    <button id="payButton" class="btn btn-success">Pay</button>
+</div>
+</body>
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
+    import { getDatabase, ref, set, update, get, child } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+    import { getAuth, } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+        apiKey: "AIzaSyBasI3Cfcv2NuSSdL9rUI__pYs-xUN7nm8",
+        authDomain: "csad-restaurant-pos.firebaseapp.com",
+        databaseURL: "https://csad-restaurant-pos-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "csad-restaurant-pos",
+        storageBucket: "csad-restaurant-pos.appspot.com",
+        messagingSenderId: "964704635393",
+        appId: "1:964704635393:web:7a616e7814cb9c42348e00",
+        measurementId: "G-SW0P8CW3WQ",
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const database = getDatabase(app);
+    const auth = getAuth();
+    const dbref = ref(database);
+
+    let UserInfo = JSON.parse(sessionStorage.getItem("user-info"));
+
+    let OrderInfo = JSON.parse(sessionStorage.getItem("order-info"));
+    let orderTotal = document.getElementById("totalPrice");
+    let price = -(0 - `${OrderInfo.priceTotal}`);
+    orderTotal.innerText = "total: $" + price.toFixed(2)
+    let newPtsTotal = -(0 - price*10 - `${UserInfo.pts}`)
+    console.log(newPtsTotal)
+    document.getElementById("payButton").addEventListener("click", function() {
+        alert("Paid successfully")
+            update(ref(database, "users/" + `${UserInfo.userid}`), {
+            points: newPtsTotal,
+        })
+        window.location.href = "burgers.html"
+    })
+</script>
+</html>
