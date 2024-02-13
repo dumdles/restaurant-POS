@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order Confirmation</title>
+    <title>Payment</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -25,7 +25,7 @@
 <body>
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container-fluid p-2">
-            <div class="mx-3"><i class="fa-solid fa-chevron-left" id="backButton"></i></div>
+            <div class="mx-3"><i class="fa-solid fa-chevron-left" id="backbtn"></i></div>
             <div class="nav-title mx-auto">Checkout</div>
         </div>
     </nav>
@@ -33,20 +33,55 @@
         <div class="container-fluid" id="order-confirm">
 
         </div>
-        <div class="total-container">
-            <table>
-                <tr>
-                    <td>GST(9%) inclusive:</td>
-                    <td class="cost-value">$<span id="gst"></span></td>
-                </tr>
-                <tr>
-                    <td>Total:</td>
-                    <td class="cost-value">$<span id="totalPrice"></span></td>
-                </tr>
-            </table>
+        <div class="container order-summary">
+            <h2>Order Summary</h2>
+            <p class="mb-3">Please review your items before checking out.</p>
+            <hr />
+            <div id="cartItems"></div>
+            <hr />
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Total Price:</h5>
+                </div>
+                <div class="col-md-6">
+                    <h5 id="totalPrice">0.00</h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Service Charge (10%):</h5>
+                </div>
+                <div class="col-md-6">
+                    <h5 id="serviceCharge">0.00</h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>GST (9%):</h5>
+                </div>
+                <div class="col-md-6">
+                    <h5 id="gst">0.00</h5>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>Final Price:</h4>
+                </div>
+                <div class="col-md-6">
+                    <h4 id="finalPrice">0.00</h4>
+                </div>
+            </div>
+            <hr />  
+            <div class="row">
+                <div id="paypal-button-container">
+
+                </div>
+            </div>
+            
         </div>
-        <div id="paypal-button-container">
-        </div>
+
+        
 
     </div>
     
@@ -57,85 +92,54 @@
         let cart = [];
         let total = 0;
         let orderID = "";
-        document.addEventListener("DOMContentLoaded", async () => {
-            const storedCart = localStorage.getItem("cart");
-            if (storedCart) {
-                cart = JSON.parse(storedCart);
-                updateCartUi();
-            }
-        })
+        document.addEventListener("DOMContentLoaded", function () {
+                // Retrieve cart items from localStorage
+                const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
 
-        function updateCartUi() {
-            console.log("Updating the cart UI");
-            console.log(cart);
-            const orderConfirmation = document.getElementById("order-confirm");
-            orderConfirmation.innerHTML = "";
-            const orderConfirm = document.createElement("h1");
-            orderConfirm.innerHTML = "Order Confirmation<br><hr>";
-            orderConfirmation.appendChild(orderConfirm);
+                // Display cart items
+                const cartItemsDiv = document.getElementById("cartItems");
+                if (cartItems.length === 0) {
+                    cartItemsDiv.innerHTML = "<p>Your cart is empty.</p>";
+                } else {
+                    let totalPrice = 0;
+                    cartItems.forEach((item) => {
+                        totalPrice += item.price * item.quantity;
+                        const itemDiv = document.createElement("div");
+                        itemDiv.innerHTML = `
+                        <div class="row mb-3 align-items-center">
+                            <div class="col-md-2">
+                                <img src="${item.image}" alt="${item.name}" class="img-fluid">
+                            </div>
+                            <div class="col-md-4">
+                                <p class="item-name">${item.name}</p>
+                            </div>
+                            <div class="col-md-2">
+                                <p>Quantity: ${item.quantity}</p>
+                            </div>
+                            <div class="col-md-2">
+                                <p>$${(item.price * item.quantity).toFixed(2)}</p>
+                            </div>
+                        </div>
+                    `;
+                        cartItemsDiv.appendChild(itemDiv);
+                    });
 
-            total = 0;
-            cart.forEach(item => {
-                const itemElement = document.createElement('div');
-                itemElement.classList.add("order-confirm-items");
+                    // Calculate total price
+                    document.getElementById("totalPrice").textContent = totalPrice.toFixed(2);
 
-                const itemIcon = document.createElement("img");
-                itemIcon.src = item.image;
-                itemIcon.alt = item.name;
-                itemIcon.width = 70;
-                itemIcon.height = 70;
+                    // Calculate service charge (10%)
+                    const serviceCharge = totalPrice * 0.1;
+                    document.getElementById("serviceCharge").textContent = serviceCharge.toFixed(2);
 
-                const itemDetails = document.createElement("div");
-                itemDetails.style.display = "flex";
-                itemDetails.style.justifyContent = "space-between";
-                itemDetails.style.alignItems = "center";
-                itemDetails.style.flexGrow = "1";
+                    // Calculate GST (9%)
+                    const gst = totalPrice * 0.09;
+                    document.getElementById("gst").textContent = gst.toFixed(2);
 
-                const itemName = document.createElement("span");
-          itemName.classList.add("order-confirm-item-name");
-          itemName.innerText = item.name;
-          itemName.style.fontWeight = "bold";
-
-          const itemPriceQuantity = document.createElement("span");
-          itemPriceQuantity.style.display = "flex";
-          itemPriceQuantity.style.alignItems = "center";
-
-          const itemPrice = document.createElement("span");
-          itemPrice.classList.add("order-confirm-item-price");
-          itemPrice.innerText = `$${(item.price * item.quantity).toFixed(2)}`;
-
-          const itemQuantity = document.createElement("span");
-          itemQuantity.classList.add("order-confirm-quantity");
-          itemQuantity.innerHTML = `&times; ${item.quantity}`;
-
-          itemPriceQuantity.appendChild(itemPrice);
-
-          const priceQuantityContainer = document.createElement("div");
-          priceQuantityContainer.style.display = "flex";
-          priceQuantityContainer.style.alignItems = "center";
-          priceQuantityContainer.style.justifyContent = "flex-end"; // Align the price and quantity to the right
-
-          priceQuantityContainer.appendChild(itemPriceQuantity);
-
-          itemDetails.appendChild(itemQuantity)
-          itemDetails.appendChild(itemIcon);
-          itemDetails.appendChild(itemName);
-          itemDetails.appendChild(priceQuantityContainer);
-
-          itemElement.appendChild(itemDetails);
-
-          orderConfirmation.appendChild(itemElement);
-
-          total += item.price * item.quantity;
-        });
-        document.getElementById("gst").innerText = (total*(0.09/1.09)).toFixed(2);
-        document.getElementById("totalPrice").innerText = total.toFixed(2);
-        document.getElementById("cartOverview").style.display = "block"; // Show cart
-        }
-
-        document.getElementById("backButton").addEventListener("click", () => {
-            window.location.href = "burgers.html";
-        });
+                    // Calculate final price
+                    total = totalPrice + serviceCharge + gst;
+                    document.getElementById("finalPrice").textContent = total.toFixed(2);
+                }
+            });
 
         paypal.Buttons({
             createOrder: function (data, actions) {
@@ -153,8 +157,8 @@
                     console.log(details);
                     orderID = details.id;
                     alert('Transaction completed by user');
-
-                //    window.location.href = "ordersummary.html";
+                    
+                    window.location.href = "ordersummary.html";
                 });
             },
             onCancel: function(data) {
@@ -164,6 +168,10 @@
                 console.error('Error', err)
             }
         }).render('#paypal-button-container');
+
+        document.getElementById("backbtn").addEventListener("click", () => {
+            window.location.href = "burgers.html";
+        });
     </script>
     
 </body>

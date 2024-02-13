@@ -332,6 +332,7 @@ body {
 }
 
 .order-summary {
+    margin-top: 6%;
     padding: 3%;
     align-items: center;
     width: 90vh;
