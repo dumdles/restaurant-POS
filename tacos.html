@@ -61,10 +61,34 @@
       <button id="openCartButton" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas" aria-controls="cartOffcanvas" class="btn btn-outline-primary">Open Cart</button>
     </div>
 
+    <script>
+      function redirectToLogin() {
+        console.log("Redirecting...");
+        window.location.href = "/login.html";
+      }
+    </script>
+
+    <div class="modal" id="notSignedInModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Not signed in</h5>
+          </div>
+          <div class="modal-body">
+            <p>You must be signed in to place an order!</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" onclick="redirectToLogin()">Take me there!</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
       import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js";
       import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-analytics.js";
+      import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-auth.js";
 
       const firebaseConfig = {
         apiKey: "AIzaSyBasI3Cfcv2NuSSdL9rUI__pYs-xUN7nm8",
@@ -80,6 +104,18 @@
       const app = initializeApp(firebaseConfig);
       const analytics = getAnalytics(app);
       const db = getFirestore(app);
+      const auth = getAuth();
+
+      // Check if user is signed in
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          console.log("User is signed in: ", user.uid);
+        } else {
+          console.log("No currently signed in user!");
+          const myModal = document.getElementById("notSignedInModal");
+          new bootstrap.Modal(myModal).show();
+        }
+      });
 
       let itemsData = [];
       // Fetch data from the "tacos" collection
@@ -150,11 +186,6 @@
           const menuItemHTML = generateMenuItemHTML(item);
           document.getElementById("itemsMenu").innerHTML += menuItemHTML;
         });
-      }
-
-      // Save item to Local Storage
-      function saveCartToLocalStorage() {
-        localStorage.setItem("cart", JSON.stringify(cart));
       }
 
       // Call the populateMenu function when the page loads
@@ -310,13 +341,25 @@
 
       document.getElementById("clearCartButton").addEventListener("click", function () {
         cart = [];
-        updateCartUI();
-        saveCartToLocalStorage();
+        console.log("cart cleared: ", cart);
+        clearCartAndSave();
       });
 
       document.getElementById("checkoutButton").addEventListener("click", function () {
         window.location.href = "payment.html"
       });
+      // Save item to Local Storage
+      function saveCartToLocalStorage() {
+        console.log("Saving cart to local storage:", cart); // Add this line for debugging
+        localStorage.setItem("cart", JSON.stringify(cart));
+      }
+
+      function clearCartAndSave() {
+        console.log("Clearing cart and saving to local storage...");
+        cart = []; // Clear the cart array
+        saveCartToLocalStorage(); // Save the updated cart to local storage
+        updateCartUI(); // Update the cart UI to reflect the cleared cart
+      }
     </script>
   </body>
 </html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            crossorigin="anonymous"
+        />
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"
+        ></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet" />
+        <script src="https://kit.fontawesome.com/f99dffaa0d.js" crossorigin="anonymous"></script>
+        <script src="https://www.gstatic.com/firebasejs/10.7.2/firebase-app-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/10.7.2/firebase-storage-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/10.7.2/firebase-auth-compat.js"></script>
+
+        <link rel="stylesheet" href="styles.css" />
+
+        <title>Add Food Item</title>
+    </head>
+    <body>
+        <!-- Navbar -->
+        <script>
+            document.write('<div id="topnavbar-container"></div>');
+            fetch("../topnavbar.html")
+                .then((response) => response.text())
+                .then((data) => (document.getElementById("topnavbar-container").innerHTML = data));
+        </script>
+
+        <div class="form-container">
+            <form>
+                <h1 class="pt-4 mb-3">Add New Item</h1>
+
+                <div class="row">
+                    <div class="col mb-3">
+                        <label for="itemName" class="form-label">Item Name</label>
+                        <input type="text" class="form-control" id="itemName" />
+                    </div>
+
+                    <div class="col">
+                        <label for="itemCategory" class="form-label">Item Category</label>
+                        <select class="form-select" id="itemCategory">
+                            <option selected>Select Category</option>
+                            <option value="tacos">Tacos</option>
+                            <option value="sharingplatters">Sharing Platters</option>
+                            <option value="burgers">Burgers & Wraps</option>
+                            <option value="setmeals">Set Meals</option>
+                            <option value="sides">Sides</option>
+                            <option value="desserts">Desserts</option>
+                            <option value="drinks">Drinks</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="itemDescription" class="form-label">Item Description</label>
+                    <textarea class="form-control" id="itemDescription" rows="4"></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="itemPrice" class="form-label">Item Price</label>
+                    <input type="number" class="form-control" id="itemPrice" step="0.01" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">Item Image</label>
+                    <input class="form-control" type="file" id="formFile" />
+                </div>
+
+                <button type="submit" class="btn btn-primary mb-4">Submit</button>
+            </form>
+        </div>
+    </body>
+</html>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
+    import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js";
+    import { getStorage, ref, uploadBytes } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-storage.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-auth.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyBasI3Cfcv2NuSSdL9rUI__pYs-xUN7nm8",
+        authDomain: "csad-restaurant-pos.firebaseapp.com",
+        databaseURL: "https://csad-restaurant-pos-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "csad-restaurant-pos",
+        storageBucket: "csad-restaurant-pos.appspot.com",
+        messagingSenderId: "964704635393",
+        appId: "1:964704635393:web:7a616e7814cb9c42348e00",
+        measurementId: "G-SW0P8CW3WQ",
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+    const storage = firebase.storage();
+
+    // Form submission
+    document.querySelector("form").addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        // Get form values
+        const itemName = document.getElementById("itemName").value;
+        const itemCategory = document.getElementById("itemCategory").value;
+        const itemDescription = document.getElementById("itemDescription").value;
+        const itemPrice = parseFloat(document.getElementById("itemPrice").value);
+        const file = document.getElementById("formFile").files[0];
+
+        if (!file) {
+            alert("Please select an image for the food item.");
+            return;
+        }
+
+        // Upload image to Firebase Storage
+        const storageRef = storage.ref(`images/${file.name}`);
+        const snapshot = await storageRef.put(file);
+        const imageUrl = await snapshot.ref.getDownloadURL();
+
+        // Store form data in Firestore under the respective category
+        await db.collection("categories").doc(itemCategory).collection("items").add({
+            name: itemName,
+            description: itemDescription,
+            price: itemPrice,
+            image: imageUrl,
+        });
+
+        alert("Food item added successfully!");
+        // Clear form fields after submission if needed
+        document.querySelector("form").reset();
+    });
+</script>
