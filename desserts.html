@@ -344,6 +344,9 @@
         console.log("cart cleared: ", cart);
         clearCartAndSave();
       });
+      document.getElementById("checkoutButton").addEventListener("click", function () {
+        window.location.href = "payment.html"
+      });
 
       // Save item to Local Storage
       function saveCartToLocalStorage() {

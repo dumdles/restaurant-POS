@@ -345,6 +345,10 @@
                 clearCartAndSave();
             });
 
+            document.getElementById("checkoutButton").addEventListener("click", function () {
+            window.location.href = "payment.html"
+            });
+
             // Save item to Local Storage
             function saveCartToLocalStorage() {
                 console.log("Saving cart to local storage:", cart); // Add this line for debugging

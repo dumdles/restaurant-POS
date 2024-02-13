@@ -118,7 +118,7 @@
       });
 
       let itemsData = [];
-      // Fetch data from the "desserts" collection
+      // Fetch data from the "tacos" collection
       async function fetchItems() {
         const itemsCollection = collection(db, "categories", "tacos", "items");
         const itemsSnapshot = await getDocs(itemsCollection);
@@ -345,6 +345,9 @@
         clearCartAndSave();
       });
 
+      document.getElementById("checkoutButton").addEventListener("click", function () {
+        window.location.href = "payment.html"
+      });
       // Save item to Local Storage
       function saveCartToLocalStorage() {
         console.log("Saving cart to local storage:", cart); // Add this line for debugging
