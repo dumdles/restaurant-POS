@@ -11,6 +11,10 @@
     font-size: 25px;
 }
 
+.nav-title {
+    font-size: large;
+}
+
 .feedback {
     border-radius: 30px;
     width: auto;
@@ -163,8 +167,9 @@ body {
 }
 .sidebar .active {
     border-radius: 5px;
+    border: none;
     box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
-    background-color: #f98f21;
+    background-color: #f98f21F0;
     color: #fff;
 }
 
@@ -252,3 +257,61 @@ body {
   .cart-item-quantity {
     font-size: 0.9rem;
   }
+  .order-confirm-payment {
+    align-items: center;
+    justify-content: center;
+    padding-top: 6%;
+    padding-left: 25%;
+    padding-right: 25%;
+  }
+
+  #order-confirm {
+    flex: 1;
+    display: block;
+  }
+
+  .order-confirm-items {
+    display: block;
+    align-items: center;
+    min-width: 30%;
+    height: 80px;
+    padding: 5px 20px;
+    border-radius: 10px;
+    background-color: #f5f5f5;
+    margin-bottom: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .order-confirm-quantity {
+    display: flex;
+    align-items: left;
+    margin-right: 10px;
+    font-size: 22px;
+  }
+
+  .order-confirm-item-name {
+    font-size: 1.2rem;
+    margin-left: 10px;
+    line-height: 1;
+    max-width: 270px;
+    flex: 1;
+  }
+
+  .order-confirm-item-price {
+    margin-inline: 10px;
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+  .total-container {
+    margin-top: 10px;
+    padding: 3% 6%;
+    font-size: large;
+    font-weight: bold;
+  }
+  
+  .cost-value {
+    padding-left: 10px;
+  }
+
+  

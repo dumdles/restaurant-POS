@@ -313,6 +313,9 @@
         updateCartUI();
         saveCartToLocalStorage();
       });
+      document.getElementById("checkoutButton").addEventListener("click", function () {
+        window.location.href = "payment.html"
+      });
     </script>
   </body>
 </html>

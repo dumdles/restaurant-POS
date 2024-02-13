@@ -82,7 +82,7 @@
       const db = getFirestore(app);
 
       let itemsData = [];
-      // Fetch data from the "desserts" collection
+      // Fetch data from the "tacos" collection
       async function fetchItems() {
         const itemsCollection = collection(db, "categories", "tacos", "items");
         const itemsSnapshot = await getDocs(itemsCollection);
@@ -312,6 +312,10 @@
         cart = [];
         updateCartUI();
         saveCartToLocalStorage();
+      });
+
+      document.getElementById("checkoutButton").addEventListener("click", function () {
+        window.location.href = "payment.html"
       });
     </script>
   </body>
