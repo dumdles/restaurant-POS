@@ -21,8 +21,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Firebase JS SDK -->
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js" type="module"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js" type="module"></script>
     <link rel="stylesheet" href="signup.css" />
   </head>
 
@@ -73,7 +73,9 @@
 
                 <div class="row">
                   <button class="submit-btn" type="submit" style="position: sticky; transform: translate(86%)">Create Account</button>
+                  <a href = 'login.html'>Already have an account?</a>
                 </div>
+
 
                 <div class="row mt-3">
                   <p class="text-muted">OR</p>
@@ -204,15 +206,29 @@ function togglePasswordVisibility(inputId, buttonId) {
           const user = userCredential.user;
           console.log("User created: ", user);
 
+
+          const dt = new Date();
+          let day = dt.getDate();
+          let month = dt.getMonth() + 1;
+          let year = dt.getFullYear();
+          let currentDate = `${day}/${month}/${year}`;
+
           // Save additional user data
           set(ref(database, "users/" + user.uid), {
             firstName: firstName,
             lastName: lastName,
+            fullName: "",
             email: email,
             birthday: birthday,
+            phone: "-",
+            bio: "",
+            region: 0,
+            points: 0,
+            admin: false,
+            first_login: currentDate,
           });
 
-          alert("User created!");
+          alert("User created! Please proceed to login page.");
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -221,6 +237,7 @@ function togglePasswordVisibility(inputId, buttonId) {
           alert(errorMessage);
           // ..
         });
+
     });
 
     document.getElementById("signup_google").addEventListener("click", (e) => {
@@ -242,13 +259,28 @@ function togglePasswordVisibility(inputId, buttonId) {
           const { displayName, email, uid } = user;
           const [firstName, lastName] = displayName.split('');
 
+
+          const dt = new Date();
+          let day = dt.getDate();
+          let month = dt.getMonth() + 1;
+          let year = dt.getFullYear();
+          let currentDate = `${day}/${month}/${year}`;
+
           // Save additional user data
           set(ref(database, "users/" + user.uid), {
             firstName: firstName,
             lastName: lastName,
             email: email,
+            fullName: "",
+            birthday: "",
+            phone: "-",
+            bio: "",
+            region: 0,
+            points: 0,
+            admin: false,
+            first_login: currentDate,
           });
-          alert("User has been signed up via Google!");
+          alert("User has been signed up via Google! Please proceed to login page.");
           // ...
         })
         .catch((error) => {

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rewards</title>
+
+    <!-- Firebase JS SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js" type="module"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js" type="module"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #D9D9D9;
+        }
+
+        .css-profilebar {
+            padding: 0px;
+
+        }
+
+        .card {
+            border-radius: 30px;
+        }
+
+        .card-body {
+            align-items: center;
+        }
+
+        .css-profileimg {
+            display: inline-block;
+            border-radius: 50%;
+            overflow: hidden; /* Ensure the image stays within the rounded border */
+
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+        }
+
+        .card-body .css-name {
+            /*display: inline-block; */
+            padding: 2% 5%;
+        }
+
+        .content {
+            padding: 5%;
+        }
+
+        .content .col-6 .row h3 {
+            margin-top: 5%;
+        }
+
+        input {
+            margin-left: 5%;
+            background-color: #2b3035;
+        }
+
+        #points {
+            text-align: right;
+        }
+    </style>
+
+</head>
+<body>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg" style="background-color: #f98f21">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="index.html"> <img src="assets/logo.png" alt="logo" width="70" height="70" class="d-inline-block align-text-middle" />Los Pollos Amigos</a>
+        <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="burgers.html">Menu</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Dropdown </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contactus.html">Contact Us</a>
+                </li>
+            </ul>
+            <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button> -->
+            <li class="nav-item d-flex">
+                <a class="nav-link" href="profile.html" onload="checkLogin()" id="signUpOrProfile">Profile</a>
+            </li>
+        </div>
+    </div>
+</nav>
+
+<div id="sidebar-container"></div>
+
+<div class="container-fluid">
+    <div class="card" style="padding: 0; margin:10%;">
+        <div class="card-body" style="padding: 0; margin:0;">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="css-profilebar">
+                        <div class="card" style="background-color: #234C91; color: white">
+                            <div class="card-body">
+                                <div class="css-name">
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <h1> Progress</h1>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <h1>Your Points</h1>
+                                                </div>
+                                                <div class="col">
+                                                    <h1 id="points">0/1500</h1>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="progress" style="padding: 0px">
+                                                    <div class="progress-bar" role="progressbar" style="width: 0%;" id="ptsBar"
+                                                         aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="row">
+                <div class="col-lg-4 col-md-10 col-xs-12  col-sm-12">
+                    <div class="card mb-3" style="max-width: 540px;">
+                        <div class="row g-0">
+                            <div class="col-md-6">
+                                <div class="card-body">
+                                    <h5 class="card-title">150 Pts</h5>
+                                    <p class="card-text">Redeem a free side!</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6 text-center d-flex justify-content-center">
+                                <img src="https://firebasestorage.googleapis.com/v0/b/csad-restaurant-pos.appspot.com/o/images%2Fspicy_baked_wings.jpeg?alt=media&token=7877530e-dc5f-48d5-9c64-396466057166"
+                                     class="img-fluid">
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-10 col-xs-12  col-sm-12">
+                    <div class="card mb-3" style="max-width: 540px;">
+                        <div class="row g-0">
+                            <div class="col-md-6">
+                                <div class="card-body">
+                                    <h5 class="card-title">300 Pts</h5>
+                                    <p class="card-text">Redeem a free drink!</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6 text-center d-flex justify-content-center">
+                                <img src="https://www.acouplecooks.com/wp-content/uploads/2022/03/Lemon-Iced-Tea-001s.jpg"
+                                     class="img-fluid">
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+                <div class="col-lg-4 col-md-10 col-xs-12  col-sm-12">
+                    <div class="card mb-3" style="max-width: 540px;">
+                        <div class="row g-0">
+                            <div class="col-md-6">
+                                <div class="card-body">
+                                    <h5 class="card-title">500 Pts</h5>
+                                    <p class="card-text">Redeem a free taco!</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6 text-center d-flex justify-content-center">
+                                <img src="https://bigoven-res.cloudinary.com/image/upload/t_recipe-256/chicken-al-pastor-3024338.jpg"
+                                     class="img-fluid">
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+                <div class="col-lg-4 col-md-10 col-xs-12  col-sm-12">
+                    <div class="card mb-3" style="max-width: 540px;">
+                        <div class="row g-0">
+                            <div class="col-md-6">
+                                <div class="card-body">
+                                    <h5 class="card-title">750 Pts</h5>
+                                    <p class="card-text">Redeem a wrap or burger!</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6 text-center d-flex justify-content-center">
+                                <img src="https://www.chilitochoc.com/wp-content/uploads/2022/10/the-ultimate-cheeseburger-with-pickled-jalapenos-1.jpg"
+                                     class="img-fluid">
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+                <div class="col-lg-4 col-md-10 col-xs-12  col-sm-12">
+                    <div class="card mb-3" style="max-width: 540px;">
+                        <div class="row g-0">
+                            <div class="col-md-6">
+                                <div class="card-body">
+                                    <h5 class="card-title">1000 Pts</h5>
+                                    <p class="card-text">Redeem a dessert!</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6 text-center d-flex justify-content-center">
+                                <img src="https://bigoven-res.cloudinary.com/image/upload/t_recipe-256/arroz-con-leche-recipe-spanish-rice-pudding-3050471.jpg"
+                                     class="img-fluid">
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="card-body col-8">
+                <a href="redeemWrapBurgers.html">
+            <button type="button" class="btn btn-primary ms-auto">
+                Redeem now</button></a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="module">
+
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
+    import { getDatabase, ref, set, update, get, child, push } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+    import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+        apiKey: "AIzaSyBasI3Cfcv2NuSSdL9rUI__pYs-xUN7nm8",
+        authDomain: "csad-restaurant-pos.firebaseapp.com",
+        databaseURL: "https://csad-restaurant-pos-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "csad-restaurant-pos",
+        storageBucket: "csad-restaurant-pos.appspot.com",
+        messagingSenderId: "964704635393",
+        appId: "1:964704635393:web:7a616e7814cb9c42348e00",
+        measurementId: "G-SW0P8CW3WQ",
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const database = getDatabase(app);
+    const dbref = ref(database);
+    const auth = getAuth();
+    const user = auth.currentUser;
+
+    let UserInfo = JSON.parse(sessionStorage.getItem("user-info"));
+
+    let displayPtsBar = document.getElementById("ptsBar");
+    let displayPts = document.getElementById("points");
+
+
+    get(child(dbref, 'users/' + `${UserInfo.userid}`)).then((snapshot) => {
+        if (snapshot.exists) {
+            displayPtsBar.setAttribute("style", "width: " + snapshot.val().points / 15 + '%');
+            displayPts.innerText = snapshot.val().points + "/1500";
+        }
+    });
+
+</script>
+
+
+</html>

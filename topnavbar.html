@@ -47,4 +47,22 @@
         
       </div>
     </div>
+    <script>
+        function checkLogin() {
+            let signOrProf = document.getElementById("signUpOrProfile");
+            let UserInfo = sessionStorage.getItem("user-info");
+            let InfoArray = JSON.stringify(UserInfo) || {};
+
+            console.log(InfoArray)
+
+
+            if (InfoArray.includes("userid")) {
+                signOrProf.setAttribute("href", 'profile.html');
+                signOrProf.innerText = "Profile";
+            } else {
+                signOrProf.setAttribute("href", 'signup.html');
+                signOrProf.innerText = "Sign Up";
+            }
+        }
+    </script>
 </nav>
