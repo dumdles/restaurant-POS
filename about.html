@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Bootstrap Example</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            crossorigin="anonymous"
+        />
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"
+        ></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet" />
+        <script src="https://kit.fontawesome.com/f99dffaa0d.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="styles.css" />
+        <link rel="stylesheet" href="about.css" />
+    </head>
+    <body>
+        <script>
+            document.write('<div id="topnavbar-container"></div>');
+            fetch("topnavbar.html")
+                .then((response) => response.text())
+                .then((data) => (document.getElementById("topnavbar-container").innerHTML = data));
+        </script>
+        <section class="light">
+            <div class="container py-2">
+                <div class="h1 text-center text-dark" id="pageHeaderTitle">My Cards Light</div>
+
+                <article class="postcard light yellow">
+                    <a class="postcard__img_link" href="#">
+                        <img class="postcard__img" src="dylan.jpeg" alt="Image Title" />
+                    </a>
+                    <div class="postcard__text t-dark">
+                        <h1 class="postcard__title yellow"><a href="#">Dylan Chong Shao Feng</a></h1>
+                        <div class="postcard__subtitle small">
+                            <time datetime="2020-05-25 12:00:00"></i>P2204426 </time>
+                        </div>
+                        <div class="postcard__bar"></div>
+                        <div class="postcard__preview-txt">
+                            As a full-stack developer Dylan did:
+                            <ul>
+                                <li>Designed and developed core parts of the project, such as the Add to Cart function, and Navigation Bars</li>
+                                <li>Developed and designed the login and signup functionality</li>
+                                <li>Designed and developed Admin Console</li>
+                                <li>Created and developed the feedback form</li>
+                                <li>Designed the user interface</li>
+                                <li>Designed main structure of the project</li>
+                            </ul>
+                        </div>
+                        <ul class="postcard__tagbox">
+                            <li class="tag__item">Full Stack</li>
+                            <li class="tag__item">Database</li>
+                            <li class="tag__item play blue">Backend</li>
+                        </ul>
+                    </div>
+                </article>
+                <article class="postcard light yellow">
+                    <a class="postcard__img_link" href="#">
+                        <img class="postcard__img" src="tasneem.jpeg" alt="Image Title" />
+                    </a>
+                    <div class="postcard__text t-dark">
+                        <h1 class="postcard__title yellow"><a href="#">Thajudeen Mohamed Tasneem </a></h1>
+                        <div class="postcard__subtitle small">
+                            <time datetime="2020-05-25 12:00:00"> </i>P22233797 </time>
+                        </div>
+                        <div class="postcard__bar"></div>
+                        <div class="postcard__preview-txt">
+                            As an independent fast-learner Tasneem took up the responsibility to:
+                            <ul>
+                                <li>Set-up and develop the payment page.</li>
+                                <li>Designed and develop the order summary page.</li>
+                                <li>Ideate creatives idea to be implemented.</li>
+                                <li>Designed the user interface</li>
+                                <li>Coordinates progress of the team.</li>
+                            </ul>
+                        </div>
+                        <ul class="postcard__tagbox">
+                            <li class="tag__item">Self-learning</li>
+                            <li class="tag__item">Front-end</li>
+                            <li class="tag__item play red">Backend</li>
+                        </ul>
+                    </div>
+                </article>
+                <article class="postcard light yellow">
+                    <a class="postcard__img_link" href="#">
+                        <img class="postcard__img" src="ezra.jpeg" alt="Image Title" />
+                    </a>
+                    <div class="postcard__text t-dark">
+                        <h1 class="postcard__title yellow"><a href="#">Ezra bin Yusof</a></h1>
+                        <div class="postcard__subtitle small">
+                            <time datetime="2020-05-25 12:00:00"> </i>P2223599 </time>
+                        </div>
+                        <div class="postcard__bar"></div>
+                        <div class="postcard__preview-txt">
+                            As a backend-developer who doubles up as a UI designer, some main task that Ezra was tasked to do was:
+                            <ul>
+                                <li>Designed home, profile, edit profile, and about page interfaces.</li>
+                                <li>Developed backend for profile page, edit profile page, and rewards page.</li>
+                                <li>Ensured that user authentication is passed through all pages.</li>
+                                <li>Developed loyalty system</li>
+                            </ul>
+                        </div>
+                        <ul class="postcard__tagbox">
+                            <li class="tag__item">Backend</li>
+                            <li class="tag__item">UI designer</li>
+                            <li class="tag__item">Database</li>
+                        </ul>
+                    </div>
+                </article>
+                <article class="postcard light yellow">
+                    <a class="postcard__img_link" href="#">
+                        <img class="postcard__img" src="dyang.png" alt="Image Title" />
+                    </a>
+                    <div class="postcard__text t-dark">
+                        <h1 class="postcard__title yellow"><a href="#">D Yang Eng</a></h1>
+                        <div class="postcard__subtitle small">
+                            <time datetime="2020-05-25 12:00:00"> </i>P2223403 </time>
+                        </div>
+                        <div class="postcard__bar"></div>
+                        <div class="postcard__preview-txt">
+                            As a frontend-developer who doubles up as a Data Analyst, some main task that D Yang was tasked to do was:
+                            <ul>
+                                <li>Transformed pages from Figma into front-end code, using HTML, CSS, Bootstrap and SASS</li>
+                                <li>Insert, retrieve, model and clean data for usage, from firestore and realtime firebase</li>
+                                <li>Created dashboard, using d3.js and charts.js</li>
+                                <li>Make page interactive, using JQuery</li>
+                            </ul>
+                        </div>
+                        <ul class="postcard__tagbox">
+                            <li class="tag__item">Front-End</li>
+                            <li class="tag__item">Responsive</li>
+                            <li class="tag__item play yellow">Data Analytics</li>
+                        </ul>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </body>
+</html>

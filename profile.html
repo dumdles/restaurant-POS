@@ -1,325 +1,304 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-      crossorigin="anonymous"
-    />
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-      crossorigin="anonymous"
-    ></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet" />
-    <script src="https://kit.fontawesome.com/f99dffaa0d.js" crossorigin="anonymous"></script>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            crossorigin="anonymous"
+        />
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"
+        ></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet" />
+        <script src="https://kit.fontawesome.com/f99dffaa0d.js" crossorigin="anonymous"></script>
 
-    <!-- Firebase JS SDK -->
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js" type="module"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js" type="module"></script>
-    <link rel="stylesheet" href="signup.css" />
+        <!-- Firebase JS SDK -->
+        <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js" type="module"></script>
+        <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js" type="module"></script>
+        <link rel="stylesheet" href="signup.css" />
 
-    <title>Profile</title>
-    <style>
-      body{
-        background-color: #D9D9D9;
-      }
-      .css-profilebar{
-        padding: 0px;
+        <title>Profile</title>
+        <style>
+            body {
+                background-color: #d9d9d9;
+            }
+            .css-profilebar {
+                padding: 0px;
+            }
+            .card {
+                border-radius: 30px;
+            }
+            .content .col-6 {
+                text-align: center;
+            }
+            .card-body {
+                align-items: center;
+            }
+            .css-profileimg {
+                border-radius: 50%;
+                overflow: hidden; /* Ensure the image stays within the rounded border */
 
-      }
-      .card{
-        border-radius: 30px;
-      }
-      .content .col-6 {
-        text-align: center;
-      }
-      .card-body {
-        align-items: center;
-      }
-      .css-profileimg {
-        border-radius: 50%;
-        overflow: hidden; /* Ensure the image stays within the rounded border */
+                background-repeat: no-repeat;
+                background-position: center center;
+                background-size: cover;
+            }
+            .card-body .css-name {
+                margin-left: 10%;
+                text-align: left;
+            }
 
-        background-repeat: no-repeat;
-        background-position: center center;
-        background-size: cover;
-      }
-      .card-body .css-name {
-        margin-left: 10%;
-        text-align: left;
-      }
-
-      @media only screen and (min-width: 850px) {
-        .card-body {
-          display: flex;
-          align-items: center;
-        }
-      }
-      @media only screen and (max-width: 850px) {
-        .css-profilebar .card{
-          display: flex; /* Use flexbox layout */
-          justify-content: center; /* Center horizontally */
-          align-items: center; /* Center vertically */
-          flex-direction: column; /* Stack items vertically */
-          width: 100%; /* Take the full width to center content inside the parent */
-          text-align: center; /* Center text for inline or inline-block elements */
-          margin: auto;
-        }
-        .css-profileimg{
-          margin: auto;
-        }
-
-      }
-      .content{
-        padding: 5%;
-      }
-      .content .col-6 .row h3{
-        margin-top: 5%;
-      }
-      .cont{
-        width: fit-content;
-      }
-      .css-progress{
-        text-align: left;
-      }
-
-    </style>
-
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-lg" style="background-color: #f98f21">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="index.html"> <img src="assets/logo.png" alt="logo" width="70" height="70" class="d-inline-block align-text-middle" />Los Pollos Amigos</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="index.html">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="burgers.html">Menu</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Dropdown </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><hr class="dropdown-divider" /></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="contactus.html">Contact Us</a>
-            </li>
-          </ul>
-          <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            @media only screen and (min-width: 850px) {
+                .card-body {
+                    display: flex;
+                    align-items: center;
+                }
+            }
+            @media only screen and (max-width: 850px) {
+                .css-profilebar .card {
+                    display: flex; /* Use flexbox layout */
+                    justify-content: center; /* Center horizontally */
+                    align-items: center; /* Center vertically */
+                    flex-direction: column; /* Stack items vertically */
+                    width: 100%; /* Take the full width to center content inside the parent */
+                    text-align: center; /* Center text for inline or inline-block elements */
+                    margin: auto;
+                }
+                .css-profileimg {
+                    margin: auto;
+                }
+            }
+            .content {
+                padding: 5%;
+            }
+            .content .col-6 .row h3 {
+                margin-top: 5%;
+            }
+            .cont {
+                width: fit-content;
+            }
+            .css-progress {
+                text-align: left;
+            }
+        </style>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg" style="background-color: #f98f21">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html"> <img src="assets/logo.png" alt="logo" width="70" height="70" class="d-inline-block align-text-middle" />Los Pollos Amigos</a>
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="burgers.html">Menu</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Others </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="about.html">About this project</a></li>
+                                <li><a class="dropdown-item" href="itemlist.html">Admin Console</a></li>
+                                <li><hr class="dropdown-divider" /></li>
+                                <li><a class="dropdown-item" href="combined_visuals.html">Data Analytics</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="feedback.html">Contact Us</a>
+                        </li>
+                    </ul>
+                    <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
               <button class="btn btn-outline-success" type="submit">Search</button> -->
-          <li class="nav-item d-flex">
-            <a class="nav-link" href="profile.html" onload="checkLogin()" id="signUpOrProfile">Profile</a>
-          </li>
-        </div>
-      </div>
-    </nav>
-    <div class ="container-fluid">
-      <div class="card" style="padding: 0; margin:5%;">
-        <div class="card-body" style="padding: 0; margin:0;">
-          <div class="container-fluid">
-            <div class="row">
-              <div class="css-profilebar">
-                <div class="card" style="background-color: #F98F21;">
-                  <div class="card-body" style="height: 150px">
-                    <div class="css-name col-xl-4 col-lg-12 col-sm-12">
-                      <h1 id="profBigName">Your Name</h1>
-                      <h4 id="memberSince">Member since: xx/xx/xx</h4>
+                    <li class="nav-item d-flex">
+                        <a class="nav-link" href="profile.html" onload="checkLogin()" id="signUpOrProfile">Profile</a>
+                    </li>
+                </div>
+            </div>
+        </nav>
+        <div class="container-fluid">
+            <div class="card" style="padding: 0; margin: 5%">
+                <div class="card-body" style="padding: 0; margin: 0">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="css-profilebar">
+                                <div class="card" style="background-color: #f98f21">
+                                    <div class="card-body" style="height: 150px">
+                                        <div class="css-name col-xl-4 col-lg-12 col-sm-12">
+                                            <h1 id="profBigName">Your Name</h1>
+                                            <h4 id="memberSince">Member since: xx/xx/xx</h4>
+                                        </div>
+                                        <a href="edit_profile.html"> <button type="button" class="btn btn-primary mx-1 cont col-xl-3 col-lg-12 col-sm-12">Edit Profile</button></a>
+
+                                        <button type="button" class="btn btn-danger ms-auto cont col-xl-3 col-lg-12 col-sm-12" id="logout">Logout</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <a href="edit_profile.html"> <button type="button" class="btn btn-primary mx-1 cont col-xl-3 col-lg-12 col-sm-12">
-                      Edit Profile
-                    </button></a>
-
-                    <button type="button" class="btn btn-danger ms-auto cont col-xl-3 col-lg-12 col-sm-12" id="logout">
-                      Logout
-                    </button>
-                  </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="content">
-          <div class ="row">
-            <div class="col-5">
-              <div class="row mb-3">
-                <h3>Name</h3>
-                <h5 id="profName">Your Name</h5>
-              </div>
-              <div class="row mb-3">
-                <h3>Birthday</h3>
-                <h5 id="profBday">xxxx-xx-xx</h5>
-              </div>
-              <div class="row mb-3">
-                <h3>Phone Number</h3>
-                <h5 id="profPhoneNo"> xxxxxxxx</h5>
-              </div>
-            </div>
-            <div class="col-6 css-progress justify-content-left">
-              <div class="card" style="padding: 5%; background-color: #25BCC0; color: white">
-                <div class="col-12 css-progress">
-                  <h3 id="ptsDisplay">Progress: 0/1500</h3>
-                </div>
-                <div class="progress" style="height: 20px">
-                  <div class="progress-bar" role="progressbar" id="ptsBar" style="width: 0%"  aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                <h5 class="css-progress" id="ptsAway">0 points away from a free item!</h5>
-
-              </div>
-              <div class="css-profilebar">
-                <div class="card border-0">
-                  <div class="card-body">
-                    <div class="row mb-3">
-                      <h3>Email</h3>
-                      <h5 id="profEmail">your@email.here</h5>
+                <div class="content">
+                    <div class="row">
+                        <div class="col-5">
+                            <div class="row mb-3">
+                                <h3>Name</h3>
+                                <h5 id="profName">Your Name</h5>
+                            </div>
+                            <div class="row mb-3">
+                                <h3>Birthday</h3>
+                                <h5 id="profBday">xxxx-xx-xx</h5>
+                            </div>
+                            <div class="row mb-3">
+                                <h3>Phone Number</h3>
+                                <h5 id="profPhoneNo">xxxxxxxx</h5>
+                            </div>
+                        </div>
+                        <div class="col-6 css-progress justify-content-left">
+                            <div class="card" style="padding: 5%; background-color: #25bcc0; color: white">
+                                <div class="col-12 css-progress">
+                                    <h3 id="ptsDisplay">Progress: 0/1500</h3>
+                                </div>
+                                <div class="progress" style="height: 20px">
+                                    <div class="progress-bar" role="progressbar" id="ptsBar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <h5 class="css-progress" id="ptsAway">0 points away from a free item!</h5>
+                            </div>
+                            <div class="css-profilebar">
+                                <div class="card border-0">
+                                    <div class="card-body">
+                                        <div class="row mb-3">
+                                            <h3>Email</h3>
+                                            <h5 id="profEmail">your@email.here</h5>
+                                        </div>
+                                        <a href="rewards.html"> <button type="button" class="btn ms-auto" style="background-color: #25bcc0; color: white">View Rewards</button></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <a href="rewards.html">
-                    <button type="button" class="btn ms-auto" style="background-color: #25BCC0; color:white;">
-                      View Rewards
-                    </button></a>
-                  </div>
                 </div>
-              </div>
-
             </div>
-          </div>
         </div>
-      </div>
-    </div>
-  </body>
-  <script type="module">
+    </body>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
+        import { getDatabase, ref, set, update, get, child, push } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+        import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
-    // Import the functions you need from the SDKs you need
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
-    import { getDatabase, ref, set, update, get, child, push } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
-    import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
 
-    // TODO: Add SDKs for Firebase products that you want to use
-    // https://firebase.google.com/docs/web/setup#available-libraries
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyBasI3Cfcv2NuSSdL9rUI__pYs-xUN7nm8",
+            authDomain: "csad-restaurant-pos.firebaseapp.com",
+            databaseURL: "https://csad-restaurant-pos-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "csad-restaurant-pos",
+            storageBucket: "csad-restaurant-pos.appspot.com",
+            messagingSenderId: "964704635393",
+            appId: "1:964704635393:web:7a616e7814cb9c42348e00",
+            measurementId: "G-SW0P8CW3WQ",
+        };
 
-    // Your web app's Firebase configuration
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-    const firebaseConfig = {
-      apiKey: "AIzaSyBasI3Cfcv2NuSSdL9rUI__pYs-xUN7nm8",
-      authDomain: "csad-restaurant-pos.firebaseapp.com",
-      databaseURL: "https://csad-restaurant-pos-default-rtdb.asia-southeast1.firebasedatabase.app",
-      projectId: "csad-restaurant-pos",
-      storageBucket: "csad-restaurant-pos.appspot.com",
-      messagingSenderId: "964704635393",
-      appId: "1:964704635393:web:7a616e7814cb9c42348e00",
-      measurementId: "G-SW0P8CW3WQ",
-    };
+        let UserInfo = JSON.parse(sessionStorage.getItem("user-info"));
 
-    let UserInfo = JSON.parse(sessionStorage.getItem("user-info"));
+        let displayBigName = document.getElementById("profBigName");
+        let displayName = document.getElementById("profName");
+        let displayBday = document.getElementById("profBday");
+        let displayNo = document.getElementById("profPhoneNo");
+        let displayEmail = document.getElementById("profEmail");
+        let displayPts = document.getElementById("ptsDisplay");
+        let displayPtsBar = document.getElementById("ptsBar");
+        let displayPtsAway = document.getElementById("ptsAway");
+        let displayMemberDate = document.getElementById("memberSince");
 
-    let displayBigName = document.getElementById("profBigName");
-    let displayName = document.getElementById("profName");
-    let displayBday = document.getElementById("profBday");
-    let displayNo = document.getElementById("profPhoneNo");
-    let displayEmail = document.getElementById("profEmail");
-    let displayPts = document.getElementById("ptsDisplay");
-    let displayPtsBar = document.getElementById("ptsBar");
-    let displayPtsAway = document.getElementById("ptsAway");
-    let displayMemberDate = document.getElementById("memberSince")
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const database = getDatabase(app);
+        const dbref = ref(database);
+        const auth = getAuth();
+        const user = auth.currentUser;
 
+        get(child(dbref, "users/" + `${UserInfo.userid}`)).then((snapshot) => {
+            if (snapshot.exists) {
+                displayMemberDate.innerText = "Member since: " + snapshot.val().first_login;
+                if (snapshot.val().fullName === "") {
+                    displayName.innerText = snapshot.val().firstName + " " + snapshot.val().lastName;
+                    displayBigName.innerText = snapshot.val().firstName + " " + snapshot.val().lastName;
+                } else {
+                    displayName.innerText = snapshot.val().fullName;
+                    displayBigName.innerText = snapshot.val().fullName;
+                }
+                displayBday.innerText = snapshot.val().birthday;
+                displayNo.innerText = snapshot.val().phone;
+                displayEmail.innerText = snapshot.val().email;
+                displayPts.innerText = "Progress: " + snapshot.val().points + "/1500";
+                if (snapshot.val().points < 150) {
+                    displayPtsAway.innerText = 150 - snapshot.val().points + " pts away from a free side!";
+                } else if (snapshot.val().points >= 150 && snapshot.val().points < 300) {
+                    displayPtsAway.innerText = 300 - snapshot.val().points + " pts away from a free drink!";
+                } else if (snapshot.val().points >= 300 && snapshot.val().points < 500) {
+                    displayPtsAway.innerText = 500 - snapshot.val().points + " pts away from a free main dish!";
+                } else if (snapshot.val().points >= 500 && snapshot.val().points < 750) {
+                    displayPtsAway.innerText = 750 - snapshot.val().points + " pts away from a free main dish and drink!";
+                } else if (snapshot.val().points >= 750 && snapshot.val().points < 1000) {
+                    displayPtsAway.innerText = 1000 - snapshot.val().points + " pts away from a main dish, drink, and dessert!";
+                } else if (snapshot.val().points > 1000) {
+                    displayPtsAway.innerText = "Wow, so many points! Redeem them now!";
+                } else {
+                    displayPtsAway.innerText = "Error";
+                }
+                displayPtsBar.setAttribute("style", "width: " + snapshot.val().points / 15 + "%");
+            }
+        });
 
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
-    const database = getDatabase(app);
-    const dbref = ref(database);
-    const auth = getAuth();
-    const user = auth.currentUser;
+        document.getElementById("logout").addEventListener("click", function userLogout() {
+            if (confirm("Are you sure you want to logout?") == true) {
+                signOut(auth)
+                    .then(() => {
+                        sessionStorage.setItem("user-info", JSON.stringify({}));
+                        window.location.href = "index.html";
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
+            }
+        });
 
-    get(child(dbref, 'users/' + `${UserInfo.userid}`)).then((snapshot) => {
-      if (snapshot.exists) {
-        displayMemberDate.innerText = "Member since: " + snapshot.val().first_login;
-        if (snapshot.val().fullName === "") {
+        function checkLogin() {
+            let signOrProf = document.getElementById("signUpOrProfile");
+            let UserInfo = sessionStorage.getItem("user-info");
+            let InfoArray = JSON.stringify(UserInfo) || {};
 
-          displayName.innerText = snapshot.val().firstName + " " + snapshot.val().lastName;
-          displayBigName.innerText = snapshot.val().firstName + " " + snapshot.val().lastName;
+            console.log(InfoArray);
+
+            if (InfoArray.includes("userid")) {
+                signOrProf.setAttribute("href", "profile.html");
+                signOrProf.innerText = "Profile";
+            } else {
+                signOrProf.setAttribute("href", "signup.html");
+                signOrProf.innerText = "Sign Up";
+            }
         }
-        else {
-          displayName.innerText = snapshot.val().fullName;
-          displayBigName.innerText = snapshot.val().fullName;
-        }
-        displayBday.innerText = snapshot.val().birthday;
-        displayNo.innerText = snapshot.val().phone;
-        displayEmail.innerText = snapshot.val().email;
-        displayPts.innerText = "Progress: " + snapshot.val().points + "/1500";
-        if (snapshot.val().points < 150) {
-          displayPtsAway.innerText = (150 - snapshot.val().points) + " pts away from a free side!";
-        } else if (snapshot.val().points >= 150 && snapshot.val().points < 300) {
-          displayPtsAway.innerText = (300 - snapshot.val().points) + " pts away from a free drink!";
-        } else if (snapshot.val().points >= 300 && snapshot.val().points < 500) {
-          displayPtsAway.innerText = (500 - snapshot.val().points) + " pts away from a free main dish!";
-        } else if (snapshot.val().points >= 500 && snapshot.val().points < 750) {
-          displayPtsAway.innerText = (750 - snapshot.val().points) + " pts away from a free main dish and drink!";
-        } else if (snapshot.val().points >= 750 && snapshot.val().points < 1000) {
-          displayPtsAway.innerText = (1000 - snapshot.val().points) + " pts away from a main dish, drink, and dessert!";
-        } else if (snapshot.val().points > 1000) {
-          displayPtsAway.innerText = "Wow, so many points! Redeem them now!";
-        } else {
-          displayPtsAway.innerText = "Error";
-        }
-        displayPtsBar.setAttribute("style", "width: " + snapshot.val().points/15 + '%');
-
-      }
-    });
-
-    document.getElementById("logout").addEventListener('click',
-            function userLogout() {
-              if (confirm("Are you sure you want to logout?") == true) {
-                signOut(auth).then(() => {
-                  sessionStorage.setItem("user-info", JSON.stringify({
-                  }));
-                  window.location.href = "index.html";
-                }).catch((error) => {
-                  console.log(error)
-                });
-              }
-            })
-
-    function checkLogin() {
-      let signOrProf = document.getElementById("signUpOrProfile");
-      let UserInfo = sessionStorage.getItem("user-info");
-      let InfoArray = JSON.stringify(UserInfo) || {};
-
-      console.log(InfoArray)
-
-
-      if (InfoArray.includes("userid")) {
-        signOrProf.setAttribute("href", 'profile.html');
-        signOrProf.innerText = "Profile";
-      } else {
-        signOrProf.setAttribute("href", 'signup.html');
-        signOrProf.innerText = "Sign Up";
-      }
-    }
-
-
-  </script>
+    </script>
 </html>

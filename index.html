@@ -28,13 +28,13 @@
             <div class="container-fluid">
                 <a class="navbar-brand" href="index.html"> <img src="assets/logo.png" alt="logo" width="70" height="70" class="d-inline-block align-text-middle" />Los Pollos Amigos</a>
                 <button
-                        class="navbar-toggler"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#navbarSupportedContent"
-                        aria-controls="navbarSupportedContent"
-                        aria-expanded="false"
-                        aria-label="Toggle navigation"
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
                 >
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -47,22 +47,22 @@
                             <a class="nav-link" href="burgers.html">Menu</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Dropdown </a>
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Others </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><a class="dropdown-item" href="about.html">About this project</a></li>
+                                <li><a class="dropdown-item" href="itemlist.html">Admin Console</a></li>
                                 <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                <li><a class="dropdown-item" href="combined_visuals.html">Data Analytics</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="contactus.html">Contact Us</a>
+                            <a class="nav-link" href="feedback.html">Contact Us</a>
                         </li>
                     </ul>
                     <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-success" type="submit">Search</button> -->
                     <li class="nav-item d-flex">
-                        <a class="nav-link" id="signUpOrProfile" href="profile.html" >Profile</a>
+                        <a class="nav-link" id="signUpOrProfile" href="profile.html">Profile</a>
                     </li>
                 </div>
             </div>
@@ -89,21 +89,19 @@
                 .then((response) => response.text())
                 .then((data) => (document.getElementById("bottomnavbar-container").innerHTML = data));
 
-                let signOrProf = document.getElementById("signUpOrProfile");
-                let UserInfo = sessionStorage.getItem("user-info");
-                let InfoArray = JSON.stringify(UserInfo) || {};
+            let signOrProf = document.getElementById("signUpOrProfile");
+            let UserInfo = sessionStorage.getItem("user-info");
+            let InfoArray = JSON.stringify(UserInfo) || {};
 
-                console.log(InfoArray)
+            console.log(InfoArray);
 
-
-                if (InfoArray.includes("userid")) {
-                    signOrProf.setAttribute("href", 'profile.html');
-                    signOrProf.innerText = "Profile";
-                } else {
-                    signOrProf.setAttribute("href", 'signup.html');
-                    signOrProf.innerText = "Sign Up";
-                }
-
+            if (InfoArray.includes("userid")) {
+                signOrProf.setAttribute("href", "profile.html");
+                signOrProf.innerText = "Profile";
+            } else {
+                signOrProf.setAttribute("href", "signup.html");
+                signOrProf.innerText = "Sign Up";
+            }
         </script>
     </body>
 </html>
