@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payment</title>
     <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-            crossorigin="anonymous"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
     />
     <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-            crossorigin="anonymous"
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
     ></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -23,101 +23,101 @@
     <script src="https://www.paypal.com/sdk/js?client-id=ASeiqCtGJqjsLN8e4VhAHIGUsSG4UJoVH3Lr6n5siVrj0mgYlX3uMk4bSAsdBA9DMRv9wZuN1Tly3A3E&currency=SGD"></script>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg fixed-top">
-    <div class="container-fluid p-2">
-        <div class="mx-3"><i class="fa-solid fa-chevron-left" id="backbtn2"></i></div>
-        <div class="nav-title mx-auto">Order Details</div>
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container-fluid p-2">
+            <div class="mx-3"><i class="fa-solid fa-chevron-left" id="backbtn2"></i></div>
+            <div class="nav-title mx-auto">Order Details</div>
+        </div>
+    </nav>
+    <div class="order-confirm-payment justify-content-center align-items-center">
+        <h2 class="text-center">Payment Successful</h2>
+        <h5 class="text-center">You have paid $<span id="total"></span></h5>
+        <hr>
+        <img src="assets/tick_icon.png" alt="Successful" style="display: block; margin: 0 auto;">
     </div>
-</nav>
-<div class="order-confirm-payment justify-content-center align-items-center">
-    <h2 class="text-center">Payment Successful</h2>
-    <h5 class="text-center">You have paid $<span id="total"></span></h5>
-    <hr>
-    <img src="assets/tick_icon.png" alt="Successful" style="display: block; margin: 0 auto;">
-</div>
-<div class="container order-summary">
-    <h2>Order Details</h2>
-    <hr />
-    <div class="row">
-        <div class="col-md-5">
-            <h5>Order ID:</h5>
+    <div class="container order-summary">
+        <h2>Order Details</h2>
+        <hr />
+        <div class="row">
+            <div class="col-md-5">
+                <h5>Order ID:</h5>
+            </div>
+            <div class="col-md-7">
+                <h5 id="orderID">0.00</h5>
+            </div>
         </div>
-        <div class="col-md-7">
-            <h5 id="orderID">0.00</h5>
+        <div class="row">
+            <div class="col-md-5">
+                <h5>Order Time:</h5>
+            </div>
+            <div class="col-md-7">
+                <h5 id="orderTime">0.00</h5>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-5">
-            <h5>Order Time:</h5>
+        <hr/>
+        <div id="cartItems"></div>
+        <hr />
+        <div class="row">
+            <div class="col-md-6">
+                <h5>Total Price:</h5>
+            </div>
+            <div class="col-md-6">
+                <h5 id="totalPrice">0.00</h5>
+            </div>
         </div>
-        <div class="col-md-7">
-            <h5 id="orderTime">0.00</h5>
+        <div class="row">
+            <div class="col-md-6">
+                <h5>Service Charge (10%):</h5>
+            </div>
+            <div class="col-md-6">
+                <h5 id="serviceCharge">0.00</h5>
+            </div>
         </div>
-    </div>
-    <hr/>
-    <div id="cartItems"></div>
-    <hr />
-    <div class="row">
-        <div class="col-md-6">
-            <h5>Total Price:</h5>
+        <div class="row">
+            <div class="col-md-6">
+                <h5>GST (9%):</h5>
+            </div>
+            <div class="col-md-6">
+                <h5 id="gst">0.00</h5>
+            </div>
         </div>
-        <div class="col-md-6">
-            <h5 id="totalPrice">0.00</h5>
+        <hr />
+        <div class="row">
+            <div class="col-md-6">
+                <h4>Paid amount:</h4>
+            </div>
+            <div class="col-md-6">
+                <h4 id="finalPrice">0.00</h4>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <h5>Service Charge (10%):</h5>
-        </div>
-        <div class="col-md-6">
-            <h5 id="serviceCharge">0.00</h5>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <h5>GST (9%):</h5>
-        </div>
-        <div class="col-md-6">
-            <h5 id="gst">0.00</h5>
-        </div>
-    </div>
-    <hr />
-    <div class="row">
-        <div class="col-md-6">
-            <h4>Paid amount:</h4>
-        </div>
-        <div class="col-md-6">
-            <h4 id="finalPrice">0.00</h4>
-        </div>
+        
+        
     </div>
 
+    
 
-</div>
+    <script>
+        let orderDetails = [];
+        let total = 0;
+        let orderID = "";
+        document.getElementById("backbtn2").addEventListener("click", () => {
+            window.location.href = "payment.html";
+        });
 
+        document.addEventListener("DOMContentLoaded", function () {
+                // Retrieve cart items from localStorage
+                const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
 
-
-<script>
-    let orderDetails = [];
-    let total = 0;
-    let orderID = "";
-    document.getElementById("backbtn2").addEventListener("click", () => {
-        window.location.href = "payment.html";
-    });
-
-    document.addEventListener("DOMContentLoaded", function () {
-        // Retrieve cart items from localStorage
-        const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
-
-        // Display cart items
-        const cartItemsDiv = document.getElementById("cartItems");
-        if (cartItems.length === 0) {
-            cartItemsDiv.innerHTML = "<p>Your cart is empty.</p>";
-        } else {
-            let totalPrice = 0;
-            cartItems.forEach((item) => {
-                totalPrice += item.price * item.quantity;
-                const itemDiv = document.createElement("div");
-                itemDiv.innerHTML = `
+                // Display cart items
+                const cartItemsDiv = document.getElementById("cartItems");
+                if (cartItems.length === 0) {
+                    cartItemsDiv.innerHTML = "<p>Your cart is empty.</p>";
+                } else {
+                    let totalPrice = 0;
+                    cartItems.forEach((item) => {
+                        totalPrice += item.price * item.quantity;
+                        const itemDiv = document.createElement("div");
+                        itemDiv.innerHTML = `
                         <div class="row mb-3 align-items-center">
                             <div class="col-md-4">
                                 <p class="item-name">${item.name}</p>
@@ -130,40 +130,40 @@
                             </div>
                         </div>
                     `;
-                cartItemsDiv.appendChild(itemDiv);
+                        cartItemsDiv.appendChild(itemDiv);
+                    });
+
+                    // Calculate total price
+                    document.getElementById("totalPrice").textContent = totalPrice.toFixed(2);
+
+                    // Calculate service charge (10%)
+                    const serviceCharge = totalPrice * 0.1;
+                    document.getElementById("serviceCharge").textContent = serviceCharge.toFixed(2);
+
+                    // Calculate GST (9%)
+                    const gst = totalPrice * 0.09;
+                    document.getElementById("gst").textContent = gst.toFixed(2);
+
+                    // Calculate final price
+                    total = totalPrice + serviceCharge + gst;
+                    document.getElementById("finalPrice").textContent = total.toFixed(2);
+                    document.getElementById("total").textContent = total.toFixed(2);
+                }
             });
 
-            // Calculate total price
-            document.getElementById("totalPrice").textContent = totalPrice.toFixed(2);
+            document.addEventListener("DOMContentLoaded", function () {
+                orderID = localStorage.getItem("orderID");
+                orderTime = localStorage.getItem("orderTime");
+                const utcDate = new Date(orderTime);
+                const gmtPlus8Time = utcDate.toLocaleTimeString('en-US', { timeZone: 'Asia/Singapore' });
+                const gmtPlus8Date = utcDate.toLocaleDateString('en-US', { timeZone: 'Asia/Singapore' });
 
-            // Calculate service charge (10%)
-            const serviceCharge = totalPrice * 0.1;
-            document.getElementById("serviceCharge").textContent = serviceCharge.toFixed(2);
-
-            // Calculate GST (9%)
-            const gst = totalPrice * 0.09;
-            document.getElementById("gst").textContent = gst.toFixed(2);
-
-            // Calculate final price
-            total = totalPrice + serviceCharge + gst;
-            document.getElementById("finalPrice").textContent = total.toFixed(2);
-            document.getElementById("total").textContent = total.toFixed(2);
-        }
-    });
-
-    document.addEventListener("DOMContentLoaded", function () {
-        orderID = localStorage.getItem("orderID");
-        orderTime = localStorage.getItem("orderTime");
-        const utcDate = new Date(orderTime);
-        const gmtPlus8Time = utcDate.toLocaleTimeString('en-US', { timeZone: 'Asia/Singapore' });
-        const gmtPlus8Date = utcDate.toLocaleDateString('en-US', { timeZone: 'Asia/Singapore' });
-
-        console.log('GMT+8 Time:', gmtPlus8Time);
-        console.log('GMT+8 Date:', gmtPlus8Date);
-        document.getElementById("orderID").textContent = orderID;
-        document.getElementById("orderTime").innerHTML = gmtPlus8Time + "&nbsp&nbsp" + gmtPlus8Date;
-    })
-</script>
-
+                console.log('GMT+8 Time:', gmtPlus8Time);
+                console.log('GMT+8 Date:', gmtPlus8Date);
+                document.getElementById("orderID").textContent = orderID;
+                document.getElementById("orderTime").innerHTML = gmtPlus8Time + "&nbsp&nbsp" + gmtPlus8Date;
+            })
+    </script>
+    
 </body>
 </html>
