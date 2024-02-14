@@ -1,150 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-      crossorigin="anonymous"
-    />
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-      crossorigin="anonymous"
-    ></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet" />
-    <script src="https://kit.fontawesome.com/f99dffaa0d.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="styles.css" />
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            crossorigin="anonymous"
+        />
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"
+        ></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet" />
+        <script src="https://kit.fontawesome.com/f99dffaa0d.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="styles.css" />
 
-    <title>Order</title>
-  </head>
+        <title>Order</title>
+    </head>
 
-  <body>
-    <!-- Navbar -->
-    <script>
-      document.write('<div id="topnavbar-container"></div>');
-      fetch("topnavbar.html")
-        .then((response) => response.text())
-        .then((data) => (document.getElementById("topnavbar-container").innerHTML = data));
-    </script>
+    <body>
+        <!-- Navbar -->
+        <script>
+            document.write('<div id="topnavbar-container"></div>');
+            fetch("topnavbar.html")
+                .then((response) => response.text())
+                .then((data) => (document.getElementById("topnavbar-container").innerHTML = data));
+        </script>
 
-    <div id="sidebar-container"></div>
+        <div id="sidebar-container"></div>
 
-    <div class="container-fluid menu-items" style="padding-left: 17rem; padding-top: 8rem">
-      <div class="row" id="itemsMenu">
-        <!-- Dynamic content will be added here -->
-      </div>
-    </div>
-
-    <!-- Offcanvas Cart -->
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="cartOffcanvas" aria-labelledby="cartOffcanvasLabel">
-      <div class="offcanvas-header">
-        <h4 id="cartOffcanvasLabel">Shopping Cart</h4>
-        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-      </div>
-      <div class="offcanvas-body">
-        <div id="cartItems"><!-- Cart items will be listed here --></div>
-        <div class="d-flex">
-          <p>Total: $<span id="cartTotal">0.00</span></p>
+        <div class="container-fluid menu-items" style="padding-left: 17rem; padding-top: 8rem">
+            <div class="row" id="itemsMenu">
+                <!-- Dynamic content will be added here -->
+            </div>
         </div>
-        <button id="checkoutButton" class="btn btn-success">Checkout</button>
-        <button id="clearCartButton" class="btn btn-outline-danger">Clear cart</button>
-      </div>
-    </div>
 
-    <div id="alertContainer" class="alert alert-success position-fixed bottom-0 end-0 m-3" role="alert" style="display: none">
-      <span id="alertText"></span><br /><br />
-      <button id="openCartButton" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas" aria-controls="cartOffcanvas" class="btn btn-outline-primary">Open Cart</button>
-    </div>
-
-    <script>
-      function redirectToLogin() {
-        console.log("Redirecting...");
-        window.location.href = "/login.html";
-      }
-    </script>
-
-    <div class="modal" id="notSignedInModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Not signed in</h5>
-          </div>
-          <div class="modal-body">
-            <p>You must be signed in to place an order!</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary" onclick="redirectToLogin()">Take me there!</button>
-          </div>
+        <!-- Offcanvas Cart -->
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="cartOffcanvas" aria-labelledby="cartOffcanvasLabel">
+            <div class="offcanvas-header">
+                <h4 id="cartOffcanvasLabel">Shopping Cart</h4>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <div id="cartItems"><!-- Cart items will be listed here --></div>
+                <div class="d-flex">
+                    <p>Total: $<span id="cartTotal">0.00</span></p>
+                </div>
+                <button id="checkoutButton" class="btn btn-success">Checkout</button>
+                <button id="clearCartButton" class="btn btn-outline-danger">Clear cart</button>
+            </div>
         </div>
-      </div>
-    </div>
 
-    <script type="module">
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
-      import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js";
-      import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-analytics.js";
-      import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-auth.js";
+        <div id="alertContainer" class="alert alert-success position-fixed bottom-0 end-0 m-3" role="alert" style="display: none">
+            <span id="alertText"></span><br /><br />
+            <button id="openCartButton" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas" aria-controls="cartOffcanvas" class="btn btn-outline-primary">Open Cart</button>
+        </div>
 
-      const firebaseConfig = {
-        apiKey: "AIzaSyBasI3Cfcv2NuSSdL9rUI__pYs-xUN7nm8",
-        authDomain: "csad-restaurant-pos.firebaseapp.com",
-        databaseURL: "https://csad-restaurant-pos-default-rtdb.asia-southeast1.firebasedatabase.app",
-        projectId: "csad-restaurant-pos",
-        storageBucket: "csad-restaurant-pos.appspot.com",
-        messagingSenderId: "964704635393",
-        appId: "1:964704635393:web:7a616e7814cb9c42348e00",
-        measurementId: "G-SW0P8CW3WQ",
-      };
+        <script>
+            function redirectToLogin() {
+                console.log("Redirecting...");
+                window.location.href = "/login.html";
+            }
+        </script>
 
-      const app = initializeApp(firebaseConfig);
-      const analytics = getAnalytics(app);
-      const db = getFirestore(app);
-      const auth = getAuth();
+        <div class="modal" id="notSignedInModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Not signed in</h5>
+                    </div>
+                    <div class="modal-body">
+                        <p>You must be signed in to place an order!</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" onclick="redirectToLogin()">Take me there!</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-      // Check if user is signed in
-      onAuthStateChanged(auth, (user) => {
-        if (user) {
-          console.log("User is signed in: ", user.uid);
-        } else {
-          console.log("No currently signed in user!");
-          const myModal = document.getElementById("notSignedInModal");
-          new bootstrap.Modal(myModal).show();
-        }
-      });
+        <script type="module">
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
+            import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js";
+            import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-analytics.js";
+            import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-auth.js";
 
-      let itemsData = [];
-      // Fetch data from the "desserts" collection
-      async function fetchItems() {
-        const itemsCollection = collection(db, "categories", "desserts", "items");
-        const itemsSnapshot = await getDocs(itemsCollection);
-        return itemsSnapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-      }
+            const firebaseConfig = {
+                apiKey: "AIzaSyBasI3Cfcv2NuSSdL9rUI__pYs-xUN7nm8",
+                authDomain: "csad-restaurant-pos.firebaseapp.com",
+                databaseURL: "https://csad-restaurant-pos-default-rtdb.asia-southeast1.firebasedatabase.app",
+                projectId: "csad-restaurant-pos",
+                storageBucket: "csad-restaurant-pos.appspot.com",
+                messagingSenderId: "964704635393",
+                appId: "1:964704635393:web:7a616e7814cb9c42348e00",
+                measurementId: "G-SW0P8CW3WQ",
+            };
 
-      document.addEventListener("DOMContentLoaded", async () => {
-        const storedCart = localStorage.getItem("cart");
-        if (storedCart) {
-          cart = JSON.parse(storedCart);
-          updateCartUI();
-        }
-        await populateMenu(); // Assuming this function is for fetching menu items
-      });
+            const app = initializeApp(firebaseConfig);
+            const analytics = getAnalytics(app);
+            const db = getFirestore(app);
+            const auth = getAuth();
 
-      // Function to generate HTML for menu items
-      function generateMenuItemHTML(item) {
-        return `
+            // Check if user is signed in
+            onAuthStateChanged(auth, (user) => {
+                if (user) {
+                    console.log("User is signed in: ", user.uid);
+                } else {
+                    console.log("No currently signed in user!");
+                    const myModal = document.getElementById("notSignedInModal");
+                    new bootstrap.Modal(myModal).show();
+                }
+            });
+
+            let itemsData = [];
+            // Fetch data from the "desserts" collection
+            async function fetchItems() {
+                const itemsCollection = collection(db, "categories", "desserts", "items");
+                const itemsSnapshot = await getDocs(itemsCollection);
+                return itemsSnapshot.docs.map((doc) => ({
+                    id: doc.id,
+                    ...doc.data(),
+                }));
+            }
+
+            document.addEventListener("DOMContentLoaded", async () => {
+                const storedCart = localStorage.getItem("cart");
+                if (storedCart) {
+                    cart = JSON.parse(storedCart);
+                    updateCartUI();
+                }
+                await populateMenu(); // Assuming this function is for fetching menu items
+            });
+
+            // Function to generate HTML for menu items
+            function generateMenuItemHTML(item) {
+                return `
                     <div class="col">
                         <div class="card" id="card-${item.id}">
                             <div class="row g-0">
                                 <div class="col-md-4">
-                                    <img src="${item.image}" class="img-fluid rounded-start" alt="${item.name}" />
+                                    <img style="height:350px" src="${item.image}" class="img-fluid rounded-start" alt="${item.name}" />
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
@@ -157,209 +157,209 @@
                             </div>
                         </div>
                     </div>`;
-      }
-      // Function to adjust card height dynamically
-      function adjustCardHeight() {
-        const cards = document.querySelectorAll(".card");
-
-        cards.forEach((card) => {
-          const cardBody = card.querySelector(".card-body");
-          const maxHeight = card.clientHeight; // Get the initial height of the card
-
-          // Check if the content height exceeds the initial card height
-          if (cardBody.scrollHeight > maxHeight) {
-            const paddingAdjustment = cardBody.scrollHeight - maxHeight;
-            card.style.paddingBottom = `${paddingAdjustment}px`;
-          }
-        });
-        // Call the function after the content is loaded
-        document.addEventListener("DOMContentLoaded", adjustCardHeight);
-      }
-
-      // Populate the menu with data from the "desserts" collection
-      async function populateMenu() {
-        const itemsData = await fetchItems(); // Fetch and populate itemsData
-        const itemsMenu = document.getElementById("itemsMenu");
-        itemsMenu.innerHTML = ""; // Clear existing content
-
-        itemsData.forEach((item) => {
-          const menuItemHTML = generateMenuItemHTML(item);
-          document.getElementById("itemsMenu").innerHTML += menuItemHTML;
-        });
-      }
-
-      // Call the populateMenu function when the page loads
-      document.addEventListener("DOMContentLoaded", () => {
-        populateMenu();
-      });
-
-      document.addEventListener("DOMContentLoaded", function () {
-        // Load the sidebar content from an external file
-        fetch("sidebar.html")
-          .then((response) => response.text())
-          .then((data) => {
-            const sidebarContainer = document.getElementById("sidebar-container");
-            sidebarContainer.innerHTML = data;
-
-            // Highlight the active link after the sidebar has been loaded
-            highlightActiveLink();
-          })
-          .catch((error) => console.error("Error loading the sidebar:", error));
-      });
-
-      function highlightActiveLink() {
-        const path = window.location.pathname;
-        const page = path.split("/").pop();
-
-        const links = document.querySelectorAll("#sidebar-container a");
-        links.forEach((link) => {
-          if (link.getAttribute("href") === page) {
-            link.classList.add("active"); // Add 'active' class
-          }
-        });
-      }
-
-      // Assuming an array to hold cart items
-      let cart = [];
-
-      document.addEventListener("DOMContentLoaded", async () => {
-        const itemsData = await fetchItems();
-
-        // Attach the click event listener to a static parent element
-        document.getElementById("itemsMenu").addEventListener("click", function (event) {
-          // Check if the clicked element has the class 'add-to-cart-btn'
-          if (event.target && event.target.classList.contains("add-to-cart-btn")) {
-            const button = event.target;
-            console.log("Add to Cart clicked!", button.getAttribute("data-id"));
-            const itemId = button.getAttribute("data-id");
-            const item = itemsData.find((item) => item.id === itemId);
-            console.log("Clicked ID:", itemId);
-            itemsData.forEach((item) => console.log("Item ID:", item.id));
-
-            console.log(itemsData);
-            console.log(item);
-            if (item) {
-              addToCart(item);
             }
-          }
-        });
-      });
+            // Function to adjust card height dynamically
+            function adjustCardHeight() {
+                const cards = document.querySelectorAll(".card");
 
-      function addToCart(item) {
-        console.log(`Adding item to cart: ${item.id}`);
-        // Check if item already exists in cart
-        const existingItem = cart.find((cartItem) => cartItem.id === item.id);
-        if (existingItem) {
-          existingItem.quantity += 1; // Update quantity if item exists
-        } else {
-          item.quantity = 1; // Set quantity for new item
-          cart.push(item); // Add new item to cart
-        }
-        saveCartToLocalStorage();
+                cards.forEach((card) => {
+                    const cardBody = card.querySelector(".card-body");
+                    const maxHeight = card.clientHeight; // Get the initial height of the card
 
-        // Display a modal dialog with the item details and a button to open the cart
-        const alertText = `Item added to cart: ${item.name} - $${item.price.toFixed(2)}`;
-        document.getElementById("alertText").innerText = alertText;
-        const openCartButton = document.createElement("button");
-        openCartButton.innerText = "Open Cart";
-        openCartButton.onclick = function () {
-          window.location.href = "cart.html"; // Redirect to the cart page
-        };
-        const alertContainer = document.getElementById("alertContainer");
-        alertContainer.style.display = "block";
+                    // Check if the content height exceeds the initial card height
+                    if (cardBody.scrollHeight > maxHeight) {
+                        const paddingAdjustment = cardBody.scrollHeight - maxHeight;
+                        card.style.paddingBottom = `${paddingAdjustment}px`;
+                    }
+                });
+                // Call the function after the content is loaded
+                document.addEventListener("DOMContentLoaded", adjustCardHeight);
+            }
 
-        // Hide the alert after 3 seconds
-        setTimeout(function () {
-          alertContainer.style.display = "none";
-        }, 3000);
+            // Populate the menu with data from the "desserts" collection
+            async function populateMenu() {
+                const itemsData = await fetchItems(); // Fetch and populate itemsData
+                const itemsMenu = document.getElementById("itemsMenu");
+                itemsMenu.innerHTML = ""; // Clear existing content
 
-        updateCartUI();
-        console.log(cart); // Inspect the cart after adding
-      }
+                itemsData.forEach((item) => {
+                    const menuItemHTML = generateMenuItemHTML(item);
+                    document.getElementById("itemsMenu").innerHTML += menuItemHTML;
+                });
+            }
 
-      function updateCartUI() {
-        console.log("Updating cart UI");
-        const cartItemsContainer = document.getElementById("cartItems");
-        cartItemsContainer.innerHTML = ""; // Clear existing cart UI
-        let total = 0;
-        cart.forEach((item) => {
-          const itemElement = document.createElement("div");
-          itemElement.classList.add("cart-item"); // Add a class for styling
+            // Call the populateMenu function when the page loads
+            document.addEventListener("DOMContentLoaded", () => {
+                populateMenu();
+            });
 
-          const itemIcon = document.createElement("img");
-          itemIcon.src = item.image;
-          itemIcon.alt = item.name;
-          itemIcon.width = 50;
-          itemIcon.height = 50;
+            document.addEventListener("DOMContentLoaded", function () {
+                // Load the sidebar content from an external file
+                fetch("sidebar.html")
+                    .then((response) => response.text())
+                    .then((data) => {
+                        const sidebarContainer = document.getElementById("sidebar-container");
+                        sidebarContainer.innerHTML = data;
 
-          const itemDetails = document.createElement("div");
-          itemDetails.style.display = "flex";
-          itemDetails.style.justifyContent = "space-between";
-          itemDetails.style.alignItems = "center";
-          itemDetails.style.flexGrow = "1"; // Make the itemDetails container fill the remaining space
+                        // Highlight the active link after the sidebar has been loaded
+                        highlightActiveLink();
+                    })
+                    .catch((error) => console.error("Error loading the sidebar:", error));
+            });
 
-          const itemName = document.createElement("span");
-          itemName.classList.add("cart-item-name");
-          itemName.innerText = item.name;
-          itemName.style.fontWeight = "bold";
+            function highlightActiveLink() {
+                const path = window.location.pathname;
+                const page = path.split("/").pop();
 
-          const itemPriceQuantity = document.createElement("span");
-          itemPriceQuantity.style.display = "flex";
-          itemPriceQuantity.style.alignItems = "center";
+                const links = document.querySelectorAll("#sidebar-container a");
+                links.forEach((link) => {
+                    if (link.getAttribute("href") === page) {
+                        link.classList.add("active"); // Add 'active' class
+                    }
+                });
+            }
 
-          const itemPrice = document.createElement("span");
-          itemPrice.classList.add("cart-item-price");
-          itemPrice.innerText = `$${item.price.toFixed(2)}`;
+            // Assuming an array to hold cart items
+            let cart = [];
 
-          const itemQuantity = document.createElement("span");
-          itemQuantity.classList.add("cart-item-quantity");
-          itemQuantity.innerText = `x ${item.quantity}`;
+            document.addEventListener("DOMContentLoaded", async () => {
+                const itemsData = await fetchItems();
 
-          itemPriceQuantity.appendChild(itemPrice);
-          itemPriceQuantity.appendChild(itemQuantity);
+                // Attach the click event listener to a static parent element
+                document.getElementById("itemsMenu").addEventListener("click", function (event) {
+                    // Check if the clicked element has the class 'add-to-cart-btn'
+                    if (event.target && event.target.classList.contains("add-to-cart-btn")) {
+                        const button = event.target;
+                        console.log("Add to Cart clicked!", button.getAttribute("data-id"));
+                        const itemId = button.getAttribute("data-id");
+                        const item = itemsData.find((item) => item.id === itemId);
+                        console.log("Clicked ID:", itemId);
+                        itemsData.forEach((item) => console.log("Item ID:", item.id));
 
-          const priceQuantityContainer = document.createElement("div");
-          priceQuantityContainer.style.display = "flex";
-          priceQuantityContainer.style.alignItems = "center";
-          priceQuantityContainer.style.justifyContent = "flex-end"; // Align the price and quantity to the right
+                        console.log(itemsData);
+                        console.log(item);
+                        if (item) {
+                            addToCart(item);
+                        }
+                    }
+                });
+            });
 
-          priceQuantityContainer.appendChild(itemPriceQuantity);
+            function addToCart(item) {
+                console.log(`Adding item to cart: ${item.id}`);
+                // Check if item already exists in cart
+                const existingItem = cart.find((cartItem) => cartItem.id === item.id);
+                if (existingItem) {
+                    existingItem.quantity += 1; // Update quantity if item exists
+                } else {
+                    item.quantity = 1; // Set quantity for new item
+                    cart.push(item); // Add new item to cart
+                }
+                saveCartToLocalStorage();
 
-          itemDetails.appendChild(itemName);
-          itemDetails.appendChild(priceQuantityContainer);
+                // Display a modal dialog with the item details and a button to open the cart
+                const alertText = `Item added to cart: ${item.name} - $${item.price.toFixed(2)}`;
+                document.getElementById("alertText").innerText = alertText;
+                const openCartButton = document.createElement("button");
+                openCartButton.innerText = "Open Cart";
+                openCartButton.onclick = function () {
+                    window.location.href = "cart.html"; // Redirect to the cart page
+                };
+                const alertContainer = document.getElementById("alertContainer");
+                alertContainer.style.display = "block";
 
-          itemElement.appendChild(itemIcon);
-          itemElement.appendChild(itemDetails);
+                // Hide the alert after 3 seconds
+                setTimeout(function () {
+                    alertContainer.style.display = "none";
+                }, 3000);
 
-          cartItemsContainer.appendChild(itemElement);
+                updateCartUI();
+                console.log(cart); // Inspect the cart after adding
+            }
 
-          total += item.price * item.quantity;
-        });
-        document.getElementById("cartTotal").innerText = total.toFixed(2);
-        document.getElementById("cartOverview").style.display = "block"; // Show cart
-      }
+            function updateCartUI() {
+                console.log("Updating cart UI");
+                const cartItemsContainer = document.getElementById("cartItems");
+                cartItemsContainer.innerHTML = ""; // Clear existing cart UI
+                let total = 0;
+                cart.forEach((item) => {
+                    const itemElement = document.createElement("div");
+                    itemElement.classList.add("cart-item"); // Add a class for styling
 
-      document.getElementById("clearCartButton").addEventListener("click", function () {
-        cart = [];
-        console.log("cart cleared: ", cart);
-        clearCartAndSave();
-      });
-      document.getElementById("checkoutButton").addEventListener("click", function () {
-        window.location.href = "payment.html"
-      });
+                    const itemIcon = document.createElement("img");
+                    itemIcon.src = item.image;
+                    itemIcon.alt = item.name;
+                    itemIcon.width = 50;
+                    itemIcon.height = 50;
 
-      // Save item to Local Storage
-      function saveCartToLocalStorage() {
-        console.log("Saving cart to local storage:", cart); // Add this line for debugging
-        localStorage.setItem("cart", JSON.stringify(cart));
-      }
+                    const itemDetails = document.createElement("div");
+                    itemDetails.style.display = "flex";
+                    itemDetails.style.justifyContent = "space-between";
+                    itemDetails.style.alignItems = "center";
+                    itemDetails.style.flexGrow = "1"; // Make the itemDetails container fill the remaining space
 
-      function clearCartAndSave() {
-        console.log("Clearing cart and saving to local storage...");
-        cart = []; // Clear the cart array
-        saveCartToLocalStorage(); // Save the updated cart to local storage
-        updateCartUI(); // Update the cart UI to reflect the cleared cart
-      }
-    </script>
-  </body>
+                    const itemName = document.createElement("span");
+                    itemName.classList.add("cart-item-name");
+                    itemName.innerText = item.name;
+                    itemName.style.fontWeight = "bold";
+
+                    const itemPriceQuantity = document.createElement("span");
+                    itemPriceQuantity.style.display = "flex";
+                    itemPriceQuantity.style.alignItems = "center";
+
+                    const itemPrice = document.createElement("span");
+                    itemPrice.classList.add("cart-item-price");
+                    itemPrice.innerText = `$${item.price.toFixed(2)}`;
+
+                    const itemQuantity = document.createElement("span");
+                    itemQuantity.classList.add("cart-item-quantity");
+                    itemQuantity.innerText = `x ${item.quantity}`;
+
+                    itemPriceQuantity.appendChild(itemPrice);
+                    itemPriceQuantity.appendChild(itemQuantity);
+
+                    const priceQuantityContainer = document.createElement("div");
+                    priceQuantityContainer.style.display = "flex";
+                    priceQuantityContainer.style.alignItems = "center";
+                    priceQuantityContainer.style.justifyContent = "flex-end"; // Align the price and quantity to the right
+
+                    priceQuantityContainer.appendChild(itemPriceQuantity);
+
+                    itemDetails.appendChild(itemName);
+                    itemDetails.appendChild(priceQuantityContainer);
+
+                    itemElement.appendChild(itemIcon);
+                    itemElement.appendChild(itemDetails);
+
+                    cartItemsContainer.appendChild(itemElement);
+
+                    total += item.price * item.quantity;
+                });
+                document.getElementById("cartTotal").innerText = total.toFixed(2);
+                document.getElementById("cartOverview").style.display = "block"; // Show cart
+            }
+
+            document.getElementById("clearCartButton").addEventListener("click", function () {
+                cart = [];
+                console.log("cart cleared: ", cart);
+                clearCartAndSave();
+            });
+            document.getElementById("checkoutButton").addEventListener("click", function () {
+                window.location.href = "payment.html";
+            });
+
+            // Save item to Local Storage
+            function saveCartToLocalStorage() {
+                console.log("Saving cart to local storage:", cart); // Add this line for debugging
+                localStorage.setItem("cart", JSON.stringify(cart));
+            }
+
+            function clearCartAndSave() {
+                console.log("Clearing cart and saving to local storage...");
+                cart = []; // Clear the cart array
+                saveCartToLocalStorage(); // Save the updated cart to local storage
+                updateCartUI(); // Update the cart UI to reflect the cleared cart
+            }
+        </script>
+    </body>
 </html>

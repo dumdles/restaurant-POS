@@ -49,7 +49,7 @@
       <div class="offcanvas-body">
         <div id="cartItems"><!-- Cart items will be listed here --></div>
         <div class="d-flex">
-          <p>Total: $<span id="cartTotal">0.00</span></p>
+          <p>Total: <span id="cartTotal">0</span></p>
         </div>
         <button id="checkoutButton" class="btn btn-success">Checkout</button>
         <button id="clearCartButton" class="btn btn-outline-danger">Clear cart</button>
@@ -120,7 +120,7 @@
       let itemsData = [];
       // Fetch data from the "desserts" collection
       async function fetchItems() {
-        const itemsCollection = collection(db, "categories", "drinks", "items");
+        const itemsCollection = collection(db, "categories", "desserts", "items");
         const itemsSnapshot = await getDocs(itemsCollection);
         return itemsSnapshot.docs.map((doc) => ({
           id: doc.id,
@@ -129,7 +129,7 @@
       }
 
       document.addEventListener("DOMContentLoaded", async () => {
-        const storedCart = localStorage.getItem("cart");
+        const storedCart = localStorage.getItem("rewardCart");
         if (storedCart) {
           cart = JSON.parse(storedCart);
           updateCartUI();
@@ -150,7 +150,7 @@
                                     <div class="card-body">
                                         <h5 class="card-title">${item.name}</h5>
                                         <p class="card-text">${item.description}</p>
-                                        <h6 class="card-price">$${item.price.toFixed(2)}</h6>
+                                        <h6 class="card-price">${item.points} Points</h6>
                                         <button class="btn btn-primary add-to-cart-btn" data-id="${item.id}">Add to Cart</button>
                                     </div>
                                 </div>
@@ -195,7 +195,7 @@
 
       document.addEventListener("DOMContentLoaded", function () {
         // Load the sidebar content from an external file
-        fetch("sidebar.html")
+        fetch("rewardsSidebar.html")
           .then((response) => response.text())
           .then((data) => {
             const sidebarContainer = document.getElementById("sidebar-container");
@@ -258,7 +258,7 @@
         saveCartToLocalStorage();
 
         // Display a modal dialog with the item details and a button to open the cart
-        const alertText = `Item added to cart: ${item.name} - $${item.price.toFixed(2)}`;
+        const alertText = `Item added to cart: ${item.name} - ${item.points} Points`;
         document.getElementById("alertText").innerText = alertText;
         const openCartButton = document.createElement("button");
         openCartButton.innerText = "Open Cart";
@@ -309,7 +309,7 @@
 
           const itemPrice = document.createElement("span");
           itemPrice.classList.add("cart-item-price");
-          itemPrice.innerText = `$${item.price.toFixed(2)}`;
+          itemPrice.innerText = `${item.points}` + " Points";
 
           const itemQuantity = document.createElement("span");
           itemQuantity.classList.add("cart-item-quantity");
@@ -333,9 +333,9 @@
 
           cartItemsContainer.appendChild(itemElement);
 
-          total += item.price * item.quantity;
+          total += item.points * item.quantity;
         });
-        document.getElementById("cartTotal").innerText = total.toFixed(2);
+        document.getElementById("cartTotal").innerText = total + " Points";
         document.getElementById("cartOverview").style.display = "block"; // Show cart
       }
 
@@ -345,13 +345,10 @@
         clearCartAndSave();
       });
 
-      document.getElementById("checkoutButton").addEventListener("click", function () {
-        window.location.href = "payment.html"
-      });
       // Save item to Local Storage
       function saveCartToLocalStorage() {
         console.log("Saving cart to local storage:", cart); // Add this line for debugging
-        localStorage.setItem("cart", JSON.stringify(cart));
+        localStorage.setItem("rewardCart", JSON.stringify(cart));
       }
 
       function clearCartAndSave() {
@@ -360,6 +357,10 @@
         saveCartToLocalStorage(); // Save the updated cart to local storage
         updateCartUI(); // Update the cart UI to reflect the cleared cart
       }
+
+      document.getElementById("checkoutButton").addEventListener("click", function () {
+        window.location.href = "rewardsPayment.html"
+      })
     </script>
   </body>
 </html>
