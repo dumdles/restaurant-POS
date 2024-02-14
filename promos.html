@@ -120,7 +120,7 @@
             let itemsData = [];
             // Fetch data from the "tacos" collection
             async function fetchItems() {
-                const itemsCollection = collection(db, "categories", "tacos", "items");
+                const itemsCollection = collection(db, "categories", "promos", "items");
                 const itemsSnapshot = await getDocs(itemsCollection);
                 return itemsSnapshot.docs.map((doc) => ({
                     id: doc.id,
